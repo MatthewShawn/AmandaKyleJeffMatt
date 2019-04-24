@@ -1,15 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project 1</title>
+    <title>Food Finders</title>
+    <!-- Bootstrap=--->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
 </head>
 
 <body>
-    <p>SUP</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Food Donors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Food Recipients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Volunteers</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <h1>Food Finders</h1>
+
+        <!-- I thought here we could do some research about food waste, and local shelters/non-profits in need of donated food and describe what we are doing,
+        how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
+
+        <p>Food finders... Uber for food donations. We are planning on making a proof of concept web app that helps
+            connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants, and grocery stores
+            that have excess food. An institution that has excess food can logon to their profile and list what food
+            they have and the quantity, this will then ping the volunteer and the volunteer can decide what jobs they
+            intend on filling. The web app will also point the volunteer to the closest non-profit food bank. We will
+            implement the google maps api to get the location data on the volunteers and location of food waste and a
+            firebase database to help notify the volunteers. We will get the directions and time until arrival from
+            google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
+
+
+    </div>
 </body>
 
 </html>
