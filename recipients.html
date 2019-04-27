@@ -36,9 +36,44 @@
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Header -->
-        <h1>Food Finders</h1>
+        <div class="container">
+                <!-- Header -->
+                <h1>Request Donation</h1>
+        
+                <!-- Instructions -->
+                <p>Thanks for using Food Finders! Please fill out the form below to have your information passed 
+                    along to a volunteer who will be delivering your food request.</p>
+        
+                <!-- Form -->
+                <form>
+        
+                    <div class="form-group">
+                        <label for="organization-name-input">Organization Name</label>
+                        <input type="orgName" class="form-control" id="organization-name-input" aria-describedby="orgName">
+                    </div>
+                    <div class="form-group">
+                        <label for="produce-input">Produce Needed</label>
+                        <input type="produce" class="form-control" id="produce-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="request-input">Amount of Food Requested</label>
+                        <input type="request" class="form-control" id="request-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-input">Date Needed for Delivery</label>
+                        <input type="delivery" class="form-control" id="delivery-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-time-input">Please Deliver by THIS time:</label>
+                        <input type="delTime" class="form-control" id="delivery-time-input">
+                    <div class="form-group">
+                        <label for="special-input">Special Instructions: What does your delivery driver need to know?</label>
+                        <input type="specInst" class="form-control" id="special-input">
+
+
+                        <!-- Submit button-->
+                        <button type="submit" class="btn btn-primary" id="add-donor-btn">Submit</button>
+                </form>
     </div>
 </body>
 
