@@ -1,8 +1,10 @@
-var start = "7747 W Brook Dr, Littleton, CO 80128";
+var start = "";
 //var start = "Denver, CO";
 //var end = "Conifer, CO";
-var end = "2199 S University Blvd, Denver, CO 80208";
+var end = "";
 
+// adding a reference to the main html page input field to grab the address from 
+$
 
 
 function initMap() {
