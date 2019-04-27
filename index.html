@@ -11,30 +11,6 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="donors.html">Food Donors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="recipients.html">Food Recipients</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="volunteers.html">Volunteers</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container">
         <!-- Header -->
@@ -43,7 +19,9 @@
         <!-- I thought here we could do some research about food waste, and local shelters/non-profits in need of donated food and describe what we are doing,
         how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
 
-        <p>Food finders... Uber for food donations. We are planning on making a proof of concept web app that helps
+
+        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept
+            web app that helps
             connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants, and grocery stores
             that have excess food. An institution that has excess food can logon to their profile and list what food
             they have and the quantity, this will then ping the volunteer and the volunteer can decide what jobs they
@@ -51,6 +29,102 @@
             implement the google maps api to get the location data on the volunteers and location of food waste and a
             firebase database to help notify the volunteers. We will get the directions and time until arrival from
             google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
+
+        <!-- Here is our on click button for donator which takes you to the form -->
+
+        <div id="donor-button">
+            <button class="btn btn-primary" type="submit">Donate</button>
+        </div>
+
+        <div id="find-button">
+            <button class="btn btn-primary" type="submit">Find</button>
+        </div>
+
+        <!-- Here is our table which has all the information for donors, name of organization, product, quantity, date available, pick up by what time, and claim button-->
+        <table class="table" id="food-table">
+
+            <div class="col-md-12">
+                <h2>Food available to be picked up today!</h2>
+            </div>
+            <thead class="thead-dark">
+                <tr>
+                    <div class="col-md-2">
+                        <th scope="col">Donor Name</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Date Available</th>
+                        <th scope="col">Pick up by this time:</th>
+                        <!-- This column will have a claim button next to each row -->
+                        <th scope="col">Claim food by clicking here:</th>
+
+                        <!-- When claim button is clicked, hide all other elements and take user to recipient form.  
+                        Recipient form will ask for organization name and address. Then User will be taken to a confirmation page that shows
+                        map/route/directions-->
+
+                    </div>
+                </tr>
+            </thead>
+            <!-- Rows where new donors will go -->
+            <tbody>
+
+            </tbody>
+
+        </table>
+        <!-- Here is our form. Once button clicked, hide <p> from above and show form in its place-->
+
+        <!-- Instructions -->
+        <p>Fill out the form below to have your information available for organization to come and pick up</p>
+
+        <!-- Form -->
+        <form>
+
+            <div class="form-group">
+                <label for="donor-name-input">Donor Name</label>
+                <input type="donorName" class="form-control" id="donor-name-input" aria-describedby="donorName">
+            </div>
+            <div class="form-group">
+                <label for="product-input">Product</label>
+                <input type="product" class="form-control" id="product-input">
+            </div>
+            <div class="form-group">
+                <label for="amount-input">Amount of product to be picked up</label>
+                <input type="amount" class="form-control" id="amount-input">
+            </div>
+            <div class="form-group">
+                <label for="date-available-input">Date available for pick-up</label>
+                <input type="dateAvailable" class="form-control" id="date-available-input">
+            </div>
+            <div class="form-group">
+                <label for="pickup-time-input">Pick up by this time</label>
+                <input type="pickupTime" class="form-control" id="time-input">
+
+                <!-- Submit button-->
+                <!-- On click of submit button, information will be sent to table located above, form hides.-->
+                <button type="submit" class="btn btn-primary donor-btn" id="add-donor-btn">Submit</button>
+        </form>
+
+        <!-- Recipient form after claim button is clicked, all other elements hide and this form shows-->
+        <p>Fill out form below to claim items!</p>
+        <form>
+
+            <div class="form-group">
+                <label for="recipient-name-input">Recipient Name</label>
+                <input type="recipientName" class="form-control" id="recipient-name-input"
+                    aria-describedby="recipient-name">
+            </div>
+
+            <div class="form-group">
+                <label for="recipient-address-input">Recipient Address</label>
+                <input type="recipientAddress" class="form-control" id="recipient-address-input"
+                    aria-describedby="recipient-address">
+            </div>
+
+            <!-- Submit button-->
+            <!-- On click of submit button, information will be sent to table located above, form hides.-->
+            <button type="submit" class="btn btn-primary donor-btn" id="add-recipient-btn">Submit</button>
+        </form>
+
+        <!-- On click of recipient submit button, hide all elements and take to confirmation page with map to food from location of organization-->
 
 
     </div>
