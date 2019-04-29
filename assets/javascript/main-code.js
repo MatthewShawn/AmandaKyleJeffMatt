@@ -75,8 +75,11 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(amount),
         $("<td>").text(dateAvailable),
         $("<td>").text(pickupTime),
-        $("<td>").text()
+        $("<td>").html("<button class='claim-btn'></button>"),
     );
+
+    $(".claim-btn").text("Claim");
+
 
     // Append the new row to the table
     $("#food-table > tbody").append(newRow);
