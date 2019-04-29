@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css"> 
     <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 </head>
 
@@ -38,14 +39,14 @@
         <button class="btn btn-primary" id="donate-button" type="submit">Donate</button>
 
 
-        <div id="find-button">
-            <button class="btn btn-primary" type="submit">Find</button>
+        <div >
+            <button class="btn btn-primary" type="submit" id="find-button">Find</button>
         </div>
 
     </div>
 
         <!-- Here is our table which has all the information for donors, name of organization, product, quantity, date available, pick up by what time, and claim button-->
-        <table class="table food-table" >
+        <table class="table food-table" id="food-table" >
 
             <div class="col-md-12">
                 <h2 class="food-table">Food available to be picked up today!</h2>
@@ -136,6 +137,8 @@
 
     </div>
 <div class="row" id="request-received">
+
+    <h1> Thanks for being nice!</h1>
         <div class="col-md-1"></div>
         <table class="col-md-10 " id="pending-form">
             <tr class="pending-title">

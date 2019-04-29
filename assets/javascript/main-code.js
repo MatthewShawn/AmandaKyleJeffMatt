@@ -14,7 +14,7 @@ var database = firebase.database();
 
 // Initial hide logic.
 $(document).ready( function (){
-    $(".food-table").hide();
+    // $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
@@ -74,14 +74,18 @@ $(".donor-btn").on("click", function (event) {
     // Uploads donor data to the database
     database.ref().push(newDonor);
 
-    var adaRef = firebase.database().ref('foodfinders-bc');
-    adaRef.remove()
-    .then(function(){
-        console.log("removed it")
-    })
-    .catch(function(error) {
-        console.log("Remove failed: " + error.message)
-      });
+    // var adaRef = firebase.database().ref('foodfinders-bc');
+    // adaRef.remove()
+    // .then(function(){
+    //     console.log("removed it")
+    // })
+    // .catch(function(error) {
+    //     console.log("Remove failed: " + error.message)
+    //   });
+
+    //   database.ref().on("child_added", function(snapshot) {
+        
+    // });
 
      // receive from firebase *** incomplete
     // populate the form *** incomplete
@@ -129,6 +133,15 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(pickupTime),
         $("<td>").text()
     );
+
+    var key = childSnapshot.key;
+
+    var newButton = $("<button>");
+    newButton.attr("data-key", key);
+    newButton.text("Claim!")
+    newButton.addClass("claim btn btn-primary");
+    newRow.append(newButton);
+
 
     // Append the new row to the table
     $("#food-table > tbody").append(newRow);
