@@ -14,10 +14,11 @@ var database = firebase.database();
 
 // Initial hide logic.
 $(document).ready( function (){
-    // $(".food-table").hide();
+    $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
+    $("body").addClass("test");
 })
 
 // Home page ---> donor-register
@@ -34,8 +35,9 @@ $("#find-button").on("click", function (){
 
 // recipient-register---> possible-jobs page
 $("#add-recipient-btn").on("click", function(){
+    event.preventDefault();
     $(".pickup-form").hide();
-    $(".donor-form").show();
+    $("#food-table").show();
 })
 
 // donor register ---> request received
@@ -106,7 +108,7 @@ $(".donor-btn").on("click", function (event) {
 
 });
 
-// Create firebase event for adding donor to the database and a row in the html when user adds an entry
+// Firebase event for adding a row in the html when user adds an entry
 database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
 
@@ -147,6 +149,28 @@ database.ref().on("child_added", function (childSnapshot) {
     $("#food-table > tbody").append(newRow);
 
 })
+
+// dropdown menu for organization type
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
+
+// more dropdown logic 
+  $(".dropdown-trigger").on("click", function(){
+    instance.open();
+
+  })
+
+        
+library= places;
+
+// places Api playground
+// var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"+ ?location=-33.8670522,151.1957362
+//   &radius=500
+//   &types=food
+//   &name=harbour
+//   &key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc
 
 
 

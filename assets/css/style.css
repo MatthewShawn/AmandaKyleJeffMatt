@@ -1,3 +1,39 @@
 #pending-form{
     border: solid skyblue 2px;
 }
+#welcome-page{
+    width: 75%;
+    margin: 0 auto;
+    background: white;
+    padding: 0px, 20px;
+    opacity: .7;
+}
+#donor-register-page{
+    width: 75%;
+    margin: 10px auto;
+    background:rgba(255, 255, 255, 0.7);
+    padding: 0px, 20px;
+    
+}
+#request-received{
+    width: 75%;
+    margin: 10px auto;
+    background:rgba(255, 255, 255, 0.7);
+    padding: 0px, 20px;
+}
+#recipient-register-page{
+    width: 75%;
+    margin: 10px auto;
+    background:rgba(255, 255, 255, 0.7);
+    padding: 0px, 20px;
+}
+
+
+body{
+    background: url("../../assets/images/lukas-blazek-261682-unsplash.jpg")no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
