@@ -11,9 +11,48 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// button for adding donors
+
+// Initial hide logic.
+$(document).ready( function (){
+    $(".food-table").hide();
+    $(".donor-form").hide();
+    $(".pickup-form").hide();
+    $("#request-received").hide();
+})
+
+// Home page ---> donor-register
+$("#donate-button").on("click", function(){
+    $(".donor-form").show();
+    $("#welcome-page").hide();
+});
+
+// Home page ---> recipent-register
+$("#find-button").on("click", function (){
+    $(".pickup-form").show();
+    $("#welcome-page").hide();
+})
+
+// recipient-register---> possible-jobs page
+$("#add-recipient-btn").on("click", function(){
+    $(".pickup-form").hide();
+    $(".donor-form").show();
+})
+
+// donor register ---> request received
+// populate firebase
+// receive from firebase *** incomplete
 $(".donor-btn").on("click", function (event) {
     event.preventDefault();
+   
+    
+    // hide and show logic
+    $(".donor-form").hide();
+    $("#request-received").show();
+    
+    var newRow = $("<tr>"); 
+
+
+    $("#pending-donations").append(newRow);
 
     // Grabs user input 
     var donor = $("#donor-name-input").val().trim();
@@ -30,9 +69,22 @@ $(".donor-btn").on("click", function (event) {
         date: dateAvailable,
         time: pickupTime
     };
+    
 
     // Uploads donor data to the database
     database.ref().push(newDonor);
+
+    var adaRef = firebase.database().ref('foodfinders-bc');
+    adaRef.remove()
+    .then(function(){
+        console.log("removed it")
+    })
+    .catch(function(error) {
+        console.log("Remove failed: " + error.message)
+      });
+
+     // receive from firebase *** incomplete
+    // populate the form *** incomplete
 
     // log to console
     console.log(newDonor.name);
