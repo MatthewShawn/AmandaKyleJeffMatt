@@ -6,7 +6,7 @@
     <title>Food Finders</title>
     <!-- Bootstrap=--->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css"> 
     <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
@@ -14,8 +14,9 @@
 
 <body>
 
-    <div class="container">
+    <div class="container ">
         <!-- Header -->
+        <div id="welcome-page">
         <h1>Food Finders</h1>
 
         <!-- I thought here we could do some research about food waste, and local shelters/non-profits in need of donated food and describe what we are doing,
@@ -41,11 +42,13 @@
             <button class="btn btn-primary" type="submit">Find</button>
         </div>
 
+    </div>
+
         <!-- Here is our table which has all the information for donors, name of organization, product, quantity, date available, pick up by what time, and claim button-->
-        <table class="table" id="food-table">
+        <table class="table food-table" >
 
             <div class="col-md-12">
-                <h2>Food available to be picked up today!</h2>
+                <h2 class="food-table">Food available to be picked up today!</h2>
             </div>
             <thead class="thead-dark">
                 <tr>
@@ -74,10 +77,11 @@
         <!-- Here is our form. Once button clicked, hide <p> from above and show form in its place-->
 
         <!-- Instructions -->
-        <p>Fill out the form below to have your information available for organization to come and pick up</p>
+        
+        <p class="donor-form">Fill out the form below to have your information available for organization to come and pick up</p>
 
         <!-- Form -->
-        <form>
+        <form class="donor-form">
 
             <div class="form-group">
                 <label for="donor-name-input">Donor Name</label>
@@ -107,8 +111,8 @@
         </form>
 
         <!-- Recipient form after claim button is clicked, all other elements hide and this form shows-->
-        <p>Fill out form below to claim items!</p>
-        <form>
+        <p class="pickup-form">Fill out form below to claim items!</p>
+        <form class="pickup-form">
 
             <div class="form-group">
                 <label for="recipient-name-input">Recipient Name</label>
@@ -131,7 +135,29 @@
 
 
     </div>
+<div class="row" id="request-received">
+        <div class="col-md-1"></div>
+        <table class="col-md-10 " id="pending-form">
+            <tr class="pending-title">
+                <th class="schedule_title">Schedule</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Donations</th>
+                <th>Status</th>
+                <th>Minutes Away</th>
+            </tr>
+            <tr id="populate">
+            </tr>
 
+        </table>
+        <div class="col-md-1"></div>
+    </div>
+
+    
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
