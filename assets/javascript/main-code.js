@@ -133,8 +133,9 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(amount),
         $("<td>").text(dateAvailable),
         $("<td>").text(pickupTime),
-        $("<td>").text()
+        $("<td>").html("<button class='claim-btn'></button>"),
     );
+
 
     var key = childSnapshot.key;
 
@@ -143,6 +144,8 @@ database.ref().on("child_added", function (childSnapshot) {
     newButton.text("Claim!")
     newButton.addClass("claim btn btn-primary");
     newRow.append(newButton);
+
+
 
 
     // Append the new row to the table
