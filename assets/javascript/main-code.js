@@ -150,11 +150,12 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
     var key = childSnapshot.key;
-
+    newRow.data("data-key", key);
     var newButton = $("<button>");
     newButton.attr("data-key", key);
     newButton.text("Claim!")
-    newButton.addClass("claim btn btn-primary");
+    newButton.data("data-key", key);
+    newButton.addClass("claim btn btn-primary " + key);
     newRow.append(newButton);
 
 
@@ -164,6 +165,31 @@ database.ref().on("child_added", function(childSnapshot) {
     $("#food-table > tbody").append(newRow);
 
 })
+
+var remove = function(e){
+    console.log("I work");
+    e.preventDefault
+    var key1=$(this).data("data-key");
+    console.log(key1);
+    database.ref(key1).remove();
+    populate();
+}
+$(document).on("click",".claim", remove);
+
+var dateSelected = "";
+var amountSelected = "";
+var productSeleceted = "";
+
+// Grab the selected data points
+database.ref().on("child_removed", function (snapshot){
+    dateSelected = snapshot.date;
+    amountSelected = snapshot.foodAmount;
+    productSeleceted = snapshot.foodProduct;
+    end = snapshot.address;
+    
+
+})
+
 
 
 
