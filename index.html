@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Food Finders</title>
     <!-- Bootstrap=--->
@@ -25,20 +26,10 @@
         how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
 
 
-        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of
-            concept
-            web app that helps
-            connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants, and grocery
-            stores
-            that have excess food. An institution that has excess food can logon to their profile and list what food
-            they have and the quantity, this will then ping the volunteer and the volunteer can decide what jobs
-            they
-            intend on filling. The web app will also point the volunteer to the closest non-profit food bank. We
-            will
-            implement the google maps api to get the location data on the volunteers and location of food waste and
-            a
-            firebase database to help notify the volunteers. We will get the directions and time until arrival from
-            google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
+        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept web app that helps connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants, and grocery stores that have excess food. An institution
+            that has excess food can logon to their profile and list what food they have and the quantity, this will then ping the volunteer and the volunteer can decide what jobs they intend on filling. The web app will also point the volunteer to the
+            closest non-profit food bank. We will implement the google maps api to get the location data on the volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the directions and time until arrival
+            from google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
 
         <!-- Here is our on click button for donator which takes you to the form -->
 
@@ -53,8 +44,7 @@
 
     <!-- Donor Register page -->
     <form class="donor-form container" id="donor-register-page">
-        <p class="donor-form">Fill out the form below to have your information available for organization to come and
-            pick up</p>
+        <p class="donor-form">Fill out the form below to have your information available for organization to come and pick up</p>
 
         <div class="form-group">
             <label for="donor-name-input">Donor Name</label>
@@ -88,8 +78,7 @@
         <p class="pickup-form">Fill out form below to claim items!</p>
         <div class="form-group">
             <label for="recipient-name-input">Organization Name</label>
-            <input type="recipientName" class="form-control" id="recipient-name-input"
-                aria-describedby="recipient-name">
+            <input type="recipientName" class="form-control" id="recipient-name-input" aria-describedby="recipient-name">
         </div>
         <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
 
@@ -105,8 +94,7 @@
 
         <div class="form-group">
             <label for="recipient-address-input">Recipient Address</label>
-            <input type="recipientAddress" class="form-control" id="recipient-address-input"
-                aria-describedby="recipient-address">
+            <input type="recipientAddress" class="form-control" id="recipient-address-input" aria-describedby="recipient-address">
         </div>
 
 
@@ -173,9 +161,10 @@
     </table>
 
 
-
-
-
+    <div class="map-div">
+        <div id="right-panel"></div>
+        <div id="map"></div>
+    </div>
 
 
 
@@ -190,9 +179,8 @@
     <script src="assets/javascript/main-code.js"></script>
 
     <!-- Places Api CDN -->
-    <script
-        src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
+
 
 </body>
 
