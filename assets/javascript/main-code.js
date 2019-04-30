@@ -165,6 +165,16 @@ $(document).on("click", ".claim", function() {
     end = "Conifer, CO";
     $(".map-div").show();
 
+
+});
+
+$("#exit-btn").on("click", function() {
+    $(".map-div").hide();
+    $(".food-table").hide();
+    $(".donor-form").hide();
+    $(".pickup-form").hide();
+    $("#request-received").hide();
+    $("#welcome-page").show();
 });
 
 // dropdown menu for organization type
