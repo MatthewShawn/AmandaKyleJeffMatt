@@ -64,17 +64,19 @@ $(".donor-btn").on("click", function(event) {
     $(".donor-form").hide();
     $("#request-received").show();
 
-    var newRow = $("<tr>");
+    // var newRow = $("<tr>");
 
 
-    $("#pending-donations").append(newRow);
+    // $("#pending-donations").append(newRow);
 
     // Grabs user input 
     var donor = $("#donor-name-input").val().trim();
     var product = $("#product-input").val().trim();
     var amount = $("#amount-input").val().trim();
     var dateAvailable = $("#date-available-input").val().trim();
-    var pickupTime = $("#time-input").val().trim();
+    var pickupTime = $("#pickup-time-input").val().trim();
+
+    
 
     // Creates local "temporary" object for holding donor data 
     var newDonor = {
@@ -87,25 +89,10 @@ $(".donor-btn").on("click", function(event) {
 
 
     // Uploads donor data to the database
-    database.ref().push(newDonor);
 
-    // var adaRef = firebase.database().ref('foodfinders-bc');
-    // adaRef.remove()
-    // .then(function(){
-    //     console.log("removed it")
-    // })
-    // .catch(function(error) {
-    //     console.log("Remove failed: " + error.message)
-    //   });
-
-    //   database.ref().on("child_added", function(snapshot) {
-
-    // });
-
-    // receive from firebase *** incomplete
-    // populate the form *** incomplete
-
-    // log to console
+        database.ref().push(newDonor);
+  
+    
     console.log(newDonor.name);
     console.log(newDonor.foodProduct);
     console.log(newDonor.foodAmount);
@@ -117,7 +104,7 @@ $(".donor-btn").on("click", function(event) {
     $("#product-input").val("");
     $("#amount-input").val("");
     $("#date-available-input").val("");
-    $("#time-input").val("");
+    $("#pickup-time-input").val("");
 
 });
 
@@ -172,8 +159,8 @@ var remove = function(e){
     var key1=$(this).data("data-key");
     console.log(key1);
     database.ref(key1).remove();
-    populate();
 }
+
 $(document).on("click",".claim", remove);
 
 var dateSelected = "";
