@@ -13,28 +13,30 @@ var database = firebase.database();
 
 
 // Initial hide logic.
-$(document).ready( function (){
+$(document).ready(function () {
     $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
     $("body").addClass("test");
+    $('.modal').modal();
+    $('.dropdown-trigger').dropdown();
 })
 
 // Home page ---> donor-register
-$("#donate-button").on("click", function(){
+$("#donate-button").on("click", function () {
     $(".donor-form").show();
     $("#welcome-page").hide();
 });
 
 // Home page ---> recipent-register
-$("#find-button").on("click", function (){
+$("#find-button").on("click", function () {
     $(".pickup-form").show();
     $("#welcome-page").hide();
 })
 
 // recipient-register---> possible-jobs page
-$("#add-recipient-btn").on("click", function(){
+$("#add-recipient-btn").on("click", function () {
     event.preventDefault();
     $(".pickup-form").hide();
     $("#food-table").show();
@@ -45,13 +47,13 @@ $("#add-recipient-btn").on("click", function(){
 // receive from firebase *** incomplete
 $(".donor-btn").on("click", function (event) {
     event.preventDefault();
-   
-    
+
+
     // hide and show logic
     $(".donor-form").hide();
     $("#request-received").show();
-    
-    var newRow = $("<tr>"); 
+
+    var newRow = $("<tr>");
 
 
     $("#pending-donations").append(newRow);
@@ -71,7 +73,7 @@ $(".donor-btn").on("click", function (event) {
         date: dateAvailable,
         time: pickupTime
     };
-    
+
 
     // Uploads donor data to the database
     database.ref().push(newDonor);
@@ -86,10 +88,10 @@ $(".donor-btn").on("click", function (event) {
     //   });
 
     //   database.ref().on("child_added", function(snapshot) {
-        
+
     // });
 
-     // receive from firebase *** incomplete
+    // receive from firebase *** incomplete
     // populate the form *** incomplete
 
     // log to console
@@ -133,7 +135,6 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(amount),
         $("<td>").text(dateAvailable),
         $("<td>").text(pickupTime),
-        $("<td>").html("<button class='claim-btn'></button>"),
     );
 
 
@@ -153,20 +154,7 @@ database.ref().on("child_added", function (childSnapshot) {
 
 })
 
-// dropdown menu for organization type
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
-  });
-
-// more dropdown logic 
-  $(".dropdown-trigger").on("click", function(){
-    instance.open();
-
-  })
-
-        
-library= places;
+//library = places;
 
 // places Api playground
 // var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"+ ?location=-33.8670522,151.1957362
