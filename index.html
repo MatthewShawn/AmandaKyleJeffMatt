@@ -33,17 +33,22 @@
         how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
 
 
-        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept web app that helps connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants, and grocery stores that have excess food. An institution
-            that has excess food can logon to their profile and list what food they have and the quantity, this will then ping the volunteer and the volunteer can decide what jobs they intend on filling. The web app will also point the volunteer to the
-            closest non-profit food bank. We will implement the google maps api to get the location data on the volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the directions and time until arrival
+        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept
+            web app that helps connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants,
+            and grocery stores that have excess food. An institution
+            that has excess food can logon to their profile and list what food they have and the quantity, this will
+            then ping the volunteer and the volunteer can decide what jobs they intend on filling. The web app will also
+            point the volunteer to the
+            closest non-profit food bank. We will implement the google maps api to get the location data on the
+            volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the
+            directions and time until arrival
             from google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
 
         <!-- Here is our on click buttons for donator and for receiver which takes you to each form -->
-
-        <a class="waves-effect waves-light btn-large" id="donate-button">Donate</a>
-
-        <a class="waves-effect waves-light btn-large" id="find-button">Find</a>
-
+        <p class="center-align">
+            <a class="waves-effect waves-light btn-large" id="donate-button">Donate</a>
+            <a class="waves-effect waves-light btn-large" id="find-button">Find</a>
+        </p>
 
 
     </div>
@@ -58,25 +63,25 @@
                 pick up</p>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="organization-input" type="text" placeholder="Business Name HERE"class="validate">
+                    <input id="organization-input" type="text" placeholder="Business Name HERE" class="validate">
                     <label for="organization-input">Company Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="address-input" type="text" placeholder="Business Location"class="validate">
+                    <input id="address-input" type="text" placeholder="Business Location" class="validate">
                     <label for="address-input">Address</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="donor-name-input" type="text" placeholder="Contact Name"class="validate">
+                    <input id="donor-name-input" type="text" placeholder="Contact Name" class="validate">
                     <label for="donor-name-input">Who to Contact</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="phone-input" type="text" placeholder="Contact's Direct Number"class="validate">
+                    <input id="phone-input" type="text" placeholder="Contact's Direct Number" class="validate">
                     <label for="phone-input">Contact's Phone Number</label>
                 </div>
             </div>
@@ -94,24 +99,27 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="date-available-input" type="text" placeholder="Date of damnation availability" class="validate">
+                    <input id="date-available-input" type="text" placeholder="Date of damnation availability"
+                        class="validate">
                     <label for="date-available-input">Date Available for pick-up</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="pickup-time-input" type="text" placeholder="What's the best time for us to pickup?" class="validate">
+                    <input id="pickup-time-input" type="text" placeholder="What's the best time for us to pickup?"
+                        class="validate">
                     <label for="pickup-time-input">Pick up by this time</label>
                 </div>
             </div>
             <!-- Submit button-->
             <!-- On click of submit button, information will be sent to table on recipient page, form hides.-->
-            <button class="btn waves-effect waves-light donor-btn" type="submit" name="action" id="add-donor-btn">Submit
+            <button class="btn waves-effect waves-light donor-btn center-align" type="submit" name="action"
+                id="add-donor-btn">Submit
                 <i class="material-icons right">send</i>
             </button>
     </div>
 
-    
+
 
     </div>
 
@@ -158,28 +166,15 @@
 
     <!-- Request Recieved Page -->
 
-    <div class="row" id="request-received">
+    <div id="request-received">
 
         <h1> Thanks for being nice!</h1>
-        <div class="col s1"></div>
-        <table class="col s10" id="pending-form">
-            <tr class="pending-title">
-                <th class="schedule_title">Schedule</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th>Donations</th>
-                <th>Status</th>
-                <th>Minutes Away</th>
-            </tr>
-            <tr id="populate">
-            </tr>
+        <p> You will be notified when your donation has been accepted. Your driver will text you with estimated time of
+            arrival.</p>
+        <a class="waves-effect waves-light btn-large" id="donate-button">Donate Again</a>
 
-        </table>
-        <div class="col s1"></div>
+        <a class="waves-effect waves-light btn-large" id="home-button">Take me home</a>
+
     </div>
 
     <!-- Possible Jobs Page -->
@@ -217,7 +212,7 @@
     <div class="map-div">
         <div id="right-panel"></div>
         <div id="map"></div>
-        <button id="exit-btn">Finished with Directions</button> 
+        <button id="exit-btn">Finished with Directions</button>
     </div>
 
 
@@ -242,7 +237,8 @@
         src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
         </script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
 
 
 
