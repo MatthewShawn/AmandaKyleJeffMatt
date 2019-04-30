@@ -115,31 +115,92 @@ body {
 h1 {
     font-family: 'Oswald', sans-serif;
     text-align: center;
+    padding: 20px;
+    margin-left: 30px;
 }
 
+/* adds style to icon next to heading */
 .fork {
     position: absolute;
     margin-top: 10px;
     margin-left: 255px;
     font-size: 55px;
+    padding: 20px;
 }
+
+/* paragraph style */
+
+p {
+    padding: 20px;
+    text-align: center;
+}
+
+/* button style */
 
 #donate-button {
     color: white;
-    background-color: #328e04
+    background-color: #328e04;
 }
 
 #find-button {
     color: white;
-    background-color: #328e04
+    background-color: #328e04;
+}
+.center-align {
+    padding: 20px;
 }
 
-
+/* dropdown */
 .dropdown-content{
     width: max-content !important;
     height:auto !important;
+    opacity: .7;
  }
 
+ /* Donor form style */
+ .donor-form {
+     padding: 50px;
+     font-size: 20px;
+     font-weight: bold;   
+ }
+
+ .active {
+     color: black !important;
+ }
+
+ /* label focus color */
+ .input-field input:focus + label {
+    color: #328e04 !important;
+  }
+  /* label underline focus color */
+  .row .input-field input:focus {
+    border-bottom: 1px solid #328e04 !important;
+    box-shadow: 0 1px 0 0 #328e04 !important
+  }
+
+  .row {
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+
+  /* Pick up form style */
+  .pickup-form {
+    padding: 50px;
+    font-size: 20px;
+    font-weight: bold;   
+}
+
+label {
+    color: black !important;
+  }
+
+/* overriding color of dropdown content from materialize */
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #328e04;
+
+}
+
+/* Map style */
 
 @media print {
     #map {
