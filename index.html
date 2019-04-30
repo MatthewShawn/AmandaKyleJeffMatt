@@ -33,9 +33,15 @@
         how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
 
 
-        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept web app that helps connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants, and grocery stores that have excess food. An institution
-            that has excess food can logon to their profile and list what food they have and the quantity, this will then ping the volunteer and the volunteer can decide what jobs they intend on filling. The web app will also point the volunteer to the
-            closest non-profit food bank. We will implement the google maps api to get the location data on the volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the directions and time until arrival
+        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept
+            web app that helps connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants,
+            and grocery stores that have excess food. An institution
+            that has excess food can logon to their profile and list what food they have and the quantity, this will
+            then ping the volunteer and the volunteer can decide what jobs they intend on filling. The web app will also
+            point the volunteer to the
+            closest non-profit food bank. We will implement the google maps api to get the location data on the
+            volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the
+            directions and time until arrival
             from google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
 
         <!-- Here is our on click buttons for donator and for receiver which takes you to each form -->
@@ -93,7 +99,7 @@
             </button>
     </div>
 
-    
+
 
     </div>
 
@@ -142,89 +148,86 @@
 
     <div class="row" id="request-received">
 
-        <h1> Thanks for being nice!</h1>
-        <div class="col s1"></div>
-        <table class="col s10" id="pending-form">
-            <tr class="pending-title">
-                <th class="schedule_title">Schedule</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th>Donations</th>
-                <th>Status</th>
-                <th>Minutes Away</th>
-            </tr>
-            <tr id="populate">
-            </tr>
+        <table class="striped highlight" id="pending-form">
+            <thead>
+                <h1> Thanks for being nice!</h1>
+                <tr>
+                    <th class="schedule_title">Schedule</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
 
+            <tbody>
+                <tr>
+                    <td>Donations</td>
+                    <td>Status</td>
+                    <td>Minutes Away</td>
+                </tr>
+            </tbody>
         </table>
-        <div class="col s1"></div>
-    </div>
+        <!-- Possible Jobs Page -->
+        <table class="table food-table" id="food-table">
 
-    <!-- Possible Jobs Page -->
-    <table class="table food-table" id="food-table">
+            <div class="col s12">
+                <h2 class="food-table">Food available to be picked up today!</h2>
+            </div>
+            <thead class="thead-dark">
+                <tr>
+                    <div class="col s2">
+                        <th>Donor Name</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Date Available</th>
+                        <th>Pick up by this time:</th>
+                        <!-- This column will have a claim button next to each row -->
+                        <th>Claim food by clicking here:</th>
 
-        <div class="col s12">
-            <h2 class="food-table">Food available to be picked up today!</h2>
-        </div>
-        <thead class="thead-dark">
-            <tr>
-                <div class="col s2">
-                    <th>Donor Name</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Date Available</th>
-                    <th>Pick up by this time:</th>
-                    <!-- This column will have a claim button next to each row -->
-                    <th>Claim food by clicking here:</th>
-
-                    <!-- When claim button is clicked, hide all other elements and take user to recipient form.  
+                        <!-- When claim button is clicked, hide all other elements and take user to recipient form.  
                         Recipient form will ask for organization name and address. Then User will be taken to a confirmation page that shows
                         map/route/directions-->
 
-                </div>
-            </tr>
-        </thead>
-        <!-- Rows where new donors will go -->
-        <tbody>
+                    </div>
+                </tr>
+            </thead>
+            <!-- Rows where new donors will go -->
+            <tbody>
 
-        </tbody>
+            </tbody>
 
-    </table>
-
-
-    <div class="map-div">
-        <div id="right-panel"></div>
-        <div id="map"></div>
-        <button id="exit-btn">Finished with Directions</button> 
-    </div>
+        </table>
 
 
+        <div class="map-div">
+            <div id="right-panel"></div>
+            <div id="map"></div>
+            <button id="exit-btn">Finished with Directions</button>
+        </div>
 
 
 
 
 
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!--Javascript link-->
-    <script src="assets/javascript/main-code.js"></script>
 
-    <!-- Materialize JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Places Api CDN -->
+        <!--Javascript link-->
+        <script src="assets/javascript/main-code.js"></script>
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
-        </script>
+        <!-- Materialize JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
+        <!-- Places Api CDN -->
+
+        <script
+            src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
+            </script>
+
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
 
 
 

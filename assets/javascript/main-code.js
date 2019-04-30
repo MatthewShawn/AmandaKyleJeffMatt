@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 // Home page ---> donor-register
 
-$("#donate-button").on("click", function() {
+$("#donate-button").on("click", function () {
 
     $(".donor-form").show();
     $("#welcome-page").hide();
@@ -43,11 +43,8 @@ $("#find-button").on("click", function () {
 })
 
 // recipient-register---> possible-jobs page
-
-
-
-$("#add-recipient-btn").on("click", function() {
-
+$("#add-recipient-btn").on("click", function () {
+    console.log("I work");
     event.preventDefault();
     $(".pickup-form").hide();
     $("#food-table").show();
@@ -56,7 +53,7 @@ $("#add-recipient-btn").on("click", function() {
 // donor register ---> request received
 // populate firebase
 // receive from firebase *** incomplete
-$(".donor-btn").on("click", function(event) {
+$(".donor-btn").on("click", function (event) {
     event.preventDefault();
 
 
@@ -67,14 +64,14 @@ $(".donor-btn").on("click", function(event) {
     var newRow = $("<tr>");
 
 
-    $("#pending-donations").append(newRow);
+    //$("#pending-donations").append(newRow);
 
     // Grabs user input 
     var donor = $("#donor-name-input").val().trim();
     var product = $("#product-input").val().trim();
     var amount = $("#amount-input").val().trim();
     var dateAvailable = $("#date-available-input").val().trim();
-    var pickupTime = $("#time-input").val().trim();
+    var pickupTime = $("#pickup-time-input").val().trim();
 
     // Creates local "temporary" object for holding donor data 
     var newDonor = {
@@ -117,12 +114,12 @@ $(".donor-btn").on("click", function(event) {
     $("#product-input").val("");
     $("#amount-input").val("");
     $("#date-available-input").val("");
-    $("#time-input").val("");
+    $("#pickup-time-input").val("");
 
 });
 
 // Firebase event for adding a row in the html when user adds an entry
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
 
     // Stores everything into a variable
@@ -166,27 +163,27 @@ database.ref().on("child_added", function(childSnapshot) {
 
 })
 
-var remove = function(e){
+var remove = function (e) {
     console.log("I work");
     e.preventDefault
-    var key1=$(this).data("data-key");
+    var key1 = $(this).data("data-key");
     console.log(key1);
     database.ref(key1).remove();
     populate();
 }
-$(document).on("click",".claim", remove);
+$(document).on("click", ".claim", remove);
 
 var dateSelected = "";
 var amountSelected = "";
 var productSeleceted = "";
 
 // Grab the selected data points
-database.ref().on("child_removed", function (snapshot){
+database.ref().on("child_removed", function (snapshot) {
     dateSelected = snapshot.date;
     amountSelected = snapshot.foodAmount;
     productSeleceted = snapshot.foodProduct;
     end = snapshot.address;
-    
+
 
 })
 
@@ -198,7 +195,7 @@ var start = "Denver, CO";
 //var end = "Conifer, CO";
 var end = "Conifer, CO";
 
-$(document).on("click", ".claim", function() {
+$(document).on("click", ".claim", function () {
     //Claim is a dynamic button, so we must used $(document)
     $(".food-table").hide();
     start = "Denver, CO";
@@ -208,7 +205,7 @@ $(document).on("click", ".claim", function() {
 
 });
 
-$("#exit-btn").on("click", function() {
+$("#exit-btn").on("click", function () {
     $(".map-div").hide();
     $(".food-table").hide();
     $(".donor-form").hide();
@@ -218,9 +215,9 @@ $("#exit-btn").on("click", function() {
 });
 
 // dropdown menu for organization type
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
+    // var instances = M.Dropdown.init(elems, options);
 });
 
 
@@ -268,7 +265,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         origin: start,
         destination: end,
         travelMode: 'DRIVING'
-    }, function(response, status) {
+    }, function (response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
         } else {
