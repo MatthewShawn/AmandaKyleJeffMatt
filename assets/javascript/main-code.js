@@ -70,7 +70,10 @@ $(".donor-btn").on("click", function(event) {
     // $("#pending-donations").append(newRow);
 
     // Grabs user input 
+    var organization = $("#organization-input");
+    var address = $("#address-input");
     var donor = $("#donor-name-input").val().trim();
+    var phone = $("#phone-input");
     var product = $("#product-input").val().trim();
     var amount = $("#amount-input").val().trim();
     var dateAvailable = $("#date-available-input").val().trim();
@@ -80,27 +83,28 @@ $(".donor-btn").on("click", function(event) {
 
     // Creates local "temporary" object for holding donor data 
     var newDonor = {
+        organization: organization,
+        address: address,
         name: donor,
-        foodProduct: product,
-        foodAmount: amount,
-        date: dateAvailable,
-        time: pickupTime
+        phone: phone,
+        product: product,
+        amount: amount,
+        dateAvail: dateAvailable,
+        pickupTime: pickupTime
     };
 
 
     // Uploads donor data to the database
 
-        database.ref().push(newDonor);
-  
-    
-    console.log(newDonor.name);
-    console.log(newDonor.foodProduct);
-    console.log(newDonor.foodAmount);
-    console.log(newDonor.date);
-    console.log(newDonor.time);
+    database.ref().push(newDonor);
+
+   
 
     // Clears all of the text boxes
+    $("#organization-input").val("");
+    $("#address-input").val("");
     $("#donor-name-input").val("");
+    $("#phone-input").val("");
     $("#product-input").val("");
     $("#amount-input").val("");
     $("#date-available-input").val("");
@@ -113,22 +117,22 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val());
 
     // Stores everything into a variable
+    var organization = childSnapshot.val().organization;
+    var address = childSnapshot.val().address;
     var donor = childSnapshot.val().name;
-    var product = childSnapshot.val().foodProduct;
-    var amount = childSnapshot.val().foodAmount;
-    var dateAvailable = childSnapshot.val().date;
-    var pickupTime = childSnapshot.val().time;
+    var phone = childSnapshot.val().phone;
+    var product = childSnapshot.val().product;
+    var amount = childSnapshot.val().amount;
+    var dateAvailable = childSnapshot.val().dateAvail;
+    var pickupTime = childSnapshot.val().pickupTime;
 
-    // log donor info
-    console.log(donor);
-    console.log(product);
-    console.log(amount);
-    console.log(dateAvailable);
-    console.log(pickupTime);
 
     // Create new row in HTML
     var newRow = $("<tr>").append(
+        $("<td>").text(organization),
+        $("<td>").text(address),
         $("<td>").text(donor),
+        $("<td>").text(phone),
         $("<td>").text(product),
         $("<td>").text(amount),
         $("<td>").text(dateAvailable),
@@ -163,16 +167,26 @@ var remove = function(e){
 
 $(document).on("click",".claim", remove);
 
-var dateSelected = "";
-var amountSelected = "";
+var organizationSelected ="";
+var addressSelected = "";
+var nameSeleted = "";
+var phoneSelected ="";
 var productSeleceted = "";
+var amountSelected = "";
+var pickupDateSelected = "";
+var pickupTimeSelected = "";
+
+
 
 // Grab the selected data points
 database.ref().on("child_removed", function (snapshot){
-    dateSelected = snapshot.date;
-    amountSelected = snapshot.foodAmount;
-    productSeleceted = snapshot.foodProduct;
-    end = snapshot.address;
+    organizationSelected = snapshot.organization;
+    addressSelected = snapshot.address;
+    nameSeleted = snapshot.name;
+    phoneSelected = snapshot.phone;
+    amountSelected = snapshot.amount;
+    pickupDateSelected = snapshot.dateAvail;
+    pickupTimeSelected = snapshot.pickupTime;
     
 
 })
