@@ -13,29 +13,41 @@ var database = firebase.database();
 
 
 // Initial hide logic.
-$(document).ready(function() {
+
+$(document).ready(function () {
+
     $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
     $(".map-div").hide();
     $("body").addClass("test");
+    $('.modal').modal();
+    $('.dropdown-trigger').dropdown();
 })
 
 // Home page ---> donor-register
+
 $("#donate-button").on("click", function() {
+
     $(".donor-form").show();
     $("#welcome-page").hide();
 });
 
 // Home page ---> recipent-register
-$("#find-button").on("click", function() {
+
+$("#find-button").on("click", function () {
+
     $(".pickup-form").show();
     $("#welcome-page").hide();
 })
 
 // recipient-register---> possible-jobs page
+
+
+
 $("#add-recipient-btn").on("click", function() {
+
     event.preventDefault();
     $(".pickup-form").hide();
     $("#food-table").show();
@@ -134,7 +146,6 @@ database.ref().on("child_added", function(childSnapshot) {
         $("<td>").text(amount),
         $("<td>").text(dateAvailable),
         $("<td>").text(pickupTime),
-        $("<td>").html("<button class='claim-btn'></button>"),
     );
 
 
@@ -153,6 +164,9 @@ database.ref().on("child_added", function(childSnapshot) {
     $("#food-table > tbody").append(newRow);
 
 })
+
+
+
 
 var start = "Denver, CO";
 //var end = "Conifer, CO";
@@ -173,14 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Dropdown.init(elems, options);
 });
 
-// more dropdown logic 
-$(".dropdown-trigger").on("click", function() {
-    instance.open();
 
-})
-
-
-var library = places;
 
 // places Api playground
 // var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"+ ?location=-33.8670522,151.1957362

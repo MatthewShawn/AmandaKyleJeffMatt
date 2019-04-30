@@ -5,12 +5,19 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Food Finders</title>
+
     <!-- Bootstrap=--->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Our CSS -->
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 
 </head>
 
@@ -31,85 +38,113 @@
             closest non-profit food bank. We will implement the google maps api to get the location data on the volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the directions and time until arrival
             from google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
 
-        <!-- Here is our on click button for donator which takes you to the form -->
+        <!-- Here is our on click buttons for donator and for receiver which takes you to each form -->
 
-        <button class="btn btn-primary" id="donate-button" type="submit">Donate</button>
+        <a class="waves-effect waves-light btn-large" id="donate-button">Donate</a>
+
+        <a class="waves-effect waves-light btn-large" id="find-button">Find</a>
 
 
-        <div>
-            <button class="btn btn-primary" type="submit" id="find-button">Find</button>
-        </div>
 
     </div>
 
+
     <!-- Donor Register page -->
-    <form class="donor-form container" id="donor-register-page">
-        <p class="donor-form">Fill out the form below to have your information available for organization to come and pick up</p>
 
-        <div class="form-group">
-            <label for="donor-name-input">Donor Name</label>
-            <input type="donorName" class="form-control" id="donor-name-input" aria-describedby="donorName">
-        </div>
-        <div class="form-group">
-            <label for="product-input">Product</label>
-            <input type="product" class="form-control" id="product-input">
-        </div>
-        <div class="form-group">
-            <label for="amount-input">Amount of product to be picked up</label>
-            <input type="amount" class="form-control" id="amount-input">
-        </div>
-        <div class="form-group">
-            <label for="date-available-input">Date available for pick-up</label>
-            <input type="dateAvailable" class="form-control" id="date-available-input">
-        </div>
-        <div class="form-group">
-            <label for="pickup-time-input">Pick up by this time</label>
-            <input type="pickupTime" class="form-control" id="time-input">
-        </div>
+    <div class="row donor-form">
+        <form class="col s12" id="donor-register-page">
+            <p class="donor-form">Fill out the form below to have your information available for organization to come
+                and
+                pick up</p>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="donor-name-input" type="text" class="validate">
+                    <label for="donor-name-input">Donor Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="product-input" type="text" class="validate">
+                    <label for="product-input">Product</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="amount-input" type="text" class="validate">
+                    <label for="amount-input">Amount of product to be picked up</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="date-available-input" type="text" class="validate">
+                    <label for="date-available-input">Date Available for pick-up</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="pickup-time-input" type="text" class="validate">
+                    <label for="pickup-time-input">Pick up by this time</label>
+                </div>
+            </div>
+            <!-- Submit button-->
+            <!-- On click of submit button, information will be sent to table on recipient page, form hides.-->
+            <button class="btn waves-effect waves-light donor-btn" type="submit" name="action" id="add-donor-btn">Submit
+                <i class="material-icons right">send</i>
+            </button>
+    </div>
 
-        <!-- Submit button-->
-        <!-- On click of submit button, information will be sent to table located above, form hides.-->
-        <button type="submit" class="btn btn-primary donor-btn" id="add-donor-btn">Submit</button>
+    
+
+    </div>
+
     </form>
 
     <!-- Recipient Register Page-->
 
-    <form class="pickup-form" id="recipient-register-page">
-        <p class="pickup-form">Fill out form below to claim items!</p>
-        <div class="form-group">
-            <label for="recipient-name-input">Organization Name</label>
-            <input type="recipientName" class="form-control" id="recipient-name-input" aria-describedby="recipient-name">
+    <form class="col s12 pickup-form" id="recipient-register-page">
+        <p>Fill out form below to claim items!</p>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="recipient-name-input" type="text" class="validate">
+                <label for="recipient-name-input">Organization Name</label>
+            </div>
+
         </div>
+
+        <!-- Dropdown Structure -->
         <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
 
-        <!-- Dropdown Structure -->z
-        <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="#!">three</a></li>
-            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#">one</a></li>
+            <li><a href="#">two</a></li>
+            <li><a href="#">three</a></li>
+            <li><a href="#">four</a></li>
+            <li><a href="#">five</a></li>
         </ul>
 
-        <div class="form-group">
-            <label for="recipient-address-input">Recipient Address</label>
-            <input type="recipientAddress" class="form-control" id="recipient-address-input" aria-describedby="recipient-address">
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="recipient-address-input" type="text" class="validate">
+                <label for="recipient-address-input">Recipient Address</label>
+            </div>
+
         </div>
-
-
         <!-- Submit button-->
         <!-- On click of submit button, information will be sent to table located above, form hides.-->
-        <button type="submit" class="btn btn-primary" id="add-recipient-btn">Submit</button>
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="add-recipient-btn">Submit
+            <i class="material-icons right">send</i>
+        </button>
     </form>
 
 
     <!-- Request Recieved Page -->
+
     <div class="row" id="request-received">
 
         <h1> Thanks for being nice!</h1>
-        <div class="col-md-1"></div>
-        <table class="col-md-10 " id="pending-form">
+        <div class="col s1"></div>
+        <table class="col s10" id="pending-form">
             <tr class="pending-title">
                 <th class="schedule_title">Schedule</th>
                 <th></th>
@@ -126,25 +161,25 @@
             </tr>
 
         </table>
-        <div class="col-md-1"></div>
+        <div class="col s1"></div>
     </div>
 
     <!-- Possible Jobs Page -->
     <table class="table food-table" id="food-table">
 
-        <div class="col-md-12">
+        <div class="col s12">
             <h2 class="food-table">Food available to be picked up today!</h2>
         </div>
         <thead class="thead-dark">
             <tr>
-                <div class="col-md-2">
-                    <th scope="col">Donor Name</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Date Available</th>
-                    <th scope="col">Pick up by this time:</th>
+                <div class="col s2">
+                    <th>Donor Name</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Date Available</th>
+                    <th>Pick up by this time:</th>
                     <!-- This column will have a claim button next to each row -->
-                    <th scope="col">Claim food by clicking here:</th>
+                    <th>Claim food by clicking here:</th>
 
                     <!-- When claim button is clicked, hide all other elements and take user to recipient form.  
                         Recipient form will ask for organization name and address. Then User will be taken to a confirmation page that shows
@@ -178,8 +213,18 @@
     <!--Javascript link-->
     <script src="assets/javascript/main-code.js"></script>
 
+    <!-- Materialize JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <!-- Places Api CDN -->
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
+        </script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
+
 
 
 </body>

@@ -112,6 +112,21 @@ body {
     display: none;
 }
 
+
+
+#donate-button {
+    color: white;
+}
+
+#find-button {
+    color: white;
+}
+.dropdown-content{
+    width: max-content !important;
+    height:auto !important;
+ }
+
+
 @media print {
     #map {
         height: 500px;
@@ -122,3 +137,4 @@ body {
         width: auto;
     }
 }
+
