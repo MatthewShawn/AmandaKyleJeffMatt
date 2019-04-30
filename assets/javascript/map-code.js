@@ -1,10 +1,10 @@
-var start = "";
+var start = "Denver, CO";
 //var start = "Denver, CO";
 //var end = "Conifer, CO";
-var end = "";
+var end = "Conifer, CO";
 
 // adding a reference to the main html page input field to grab the address from 
-$
+
 
 
 function initMap() {

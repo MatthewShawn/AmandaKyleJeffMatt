@@ -13,30 +13,41 @@ var database = firebase.database();
 
 
 // Initial hide logic.
+
 $(document).ready(function () {
+
     $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
+    $(".map-div").hide();
     $("body").addClass("test");
     $('.modal').modal();
     $('.dropdown-trigger').dropdown();
 })
 
 // Home page ---> donor-register
-$("#donate-button").on("click", function () {
+
+$("#donate-button").on("click", function() {
+
     $(".donor-form").show();
     $("#welcome-page").hide();
 });
 
 // Home page ---> recipent-register
+
 $("#find-button").on("click", function () {
+
     $(".pickup-form").show();
     $("#welcome-page").hide();
 })
 
 // recipient-register---> possible-jobs page
-$("#add-recipient-btn").on("click", function () {
+
+
+
+$("#add-recipient-btn").on("click", function() {
+
     event.preventDefault();
     $(".pickup-form").hide();
     $("#food-table").show();
@@ -45,7 +56,7 @@ $("#add-recipient-btn").on("click", function () {
 // donor register ---> request received
 // populate firebase
 // receive from firebase *** incomplete
-$(".donor-btn").on("click", function (event) {
+$(".donor-btn").on("click", function(event) {
     event.preventDefault();
 
 
@@ -111,7 +122,7 @@ $(".donor-btn").on("click", function (event) {
 });
 
 // Firebase event for adding a row in the html when user adds an entry
-database.ref().on("child_added", function (childSnapshot) {
+database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val());
 
     // Stores everything into a variable
@@ -154,7 +165,29 @@ database.ref().on("child_added", function (childSnapshot) {
 
 })
 
-//library = places;
+
+
+
+var start = "Denver, CO";
+//var end = "Conifer, CO";
+var end = "Conifer, CO";
+
+$(document).on("click", ".claim", function() {
+    //Claim is a dynamic button, so we must used $(document)
+    $(".food-table").hide();
+    start = "Denver, CO";
+    end = "Conifer, CO";
+    $(".map-div").show();
+
+});
+
+// dropdown menu for organization type
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+});
+
+
 
 // places Api playground
 // var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"+ ?location=-33.8670522,151.1957362
@@ -165,3 +198,45 @@ database.ref().on("child_added", function (childSnapshot) {
 
 
 
+
+// adding a reference to the main html page input field to grab the address from 
+
+
+
+function initMap() {
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var directionsService = new google.maps.DirectionsService;
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: { lat: 41.85, lng: -87.65 }
+    });
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+    //var control = document.getElementById('floating-panel');
+    //control.style.display = 'block';
+    //map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
+    //var onChangeHandler = function() {
+
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+    //};
+    //document.getElementById('start').addEventListener('change', onChangeHandler);
+    //document.getElementById('end').addEventListener('change', onChangeHandler);
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    //var start = document.getElementById('start').value;
+    //var end = document.getElementById('end').value;
+    directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: 'DRIVING'
+    }, function(response, status) {
+        if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
