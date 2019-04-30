@@ -70,10 +70,10 @@ $(".donor-btn").on("click", function(event) {
     // $("#pending-donations").append(newRow);
 
     // Grabs user input 
-    var organization = $("#organization-input");
-    var address = $("#address-input");
+    var organization = $("#organization-input").val().trim();
+    var address = $("#address-input").val().trim();
     var donor = $("#donor-name-input").val().trim();
-    var phone = $("#phone-input");
+    var phone = $("#phone-input").val().trim();
     var product = $("#product-input").val().trim();
     var amount = $("#amount-input").val().trim();
     var dateAvailable = $("#date-available-input").val().trim();
