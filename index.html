@@ -18,6 +18,11 @@
     <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
+    <!-- Font awesome for icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Google font for heading -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
+
 
 </head>
 
@@ -26,7 +31,7 @@
 
     <!-- Welcome Page -->
     <div id="welcome-page">
-
+        <i class="fas fa-utensils fork"></i>
         <h1>Food Finders</h1>
 
         <!-- I thought here we could do some research about food waste, and local shelters/non-profits in need of donated food and describe what we are doing,
@@ -114,7 +119,7 @@
             <!-- Submit button-->
             <!-- On click of submit button, information will be sent to table on recipient page, form hides.-->
             <button class="btn waves-effect waves-light donor-btn center-align" type="submit" name="action"
-                id="add-donor-btn">Submit
+                id="add-donor-btn" style="background-color: #328e04">Submit
                 <i class="material-icons right">send</i>
             </button>
     </div>
@@ -138,7 +143,7 @@
         </div>
 
         <!-- Dropdown Structure -->
-        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1' style="background-color: #328e04">Drop Me!</a>
 
         <ul id="dropdown1" class="dropdown-content">
             <li><a href="#">one</a></li>
@@ -158,7 +163,8 @@
         </div>
         <!-- Submit button-->
         <!-- On click of submit button, information will be sent to table located above, form hides.-->
-        <button class="btn waves-effect waves-light" type="submit" name="action" id="add-recipient-btn">Submit
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="add-recipient-btn"
+            style="background-color: #328e04">Submit
             <i class="material-icons right">send</i>
         </button>
     </form>
@@ -171,10 +177,15 @@
         <h1> Thanks for being nice!</h1>
         <p> You will be notified when your donation has been accepted. Your driver will text you with estimated time of
             arrival.</p>
-        <a class="waves-effect waves-light btn-large" id="donate-button">Donate Again</a>
 
-        <a class="waves-effect waves-light btn-large" id="home-button">Take me home</a>
+        <p class="center-align">
+            <a class="waves-effect waves-light btn-large" id="donate-button" style="background-color: #328e04">Donate
+                Again</a>
 
+            <a class="waves-effect waves-light btn-large" id="home-button"
+                style="color: white; background-color: #328e04 ">Take me
+                home</a>
+        </p>
     </div>
 
     <!-- Possible Jobs Page -->
@@ -215,7 +226,7 @@
     <div class="map-div">
         <div id="right-panel"></div>
         <div id="map"></div>
-        <button id="exit-btn">Finished with Directions</button>
+        <button id="exit-btn" style="background-color: #328e04">Finished with Directions</button>
     </div>
 
 

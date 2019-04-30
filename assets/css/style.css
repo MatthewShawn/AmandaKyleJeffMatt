@@ -112,15 +112,29 @@ body {
     display: none;
 }
 
+h1 {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
 
+.fork {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 255px;
+    font-size: 55px;
+}
 
 #donate-button {
     color: white;
+    background-color: #328e04
 }
 
 #find-button {
     color: white;
+    background-color: #328e04
 }
+
+
 .dropdown-content{
     width: max-content !important;
     height:auto !important;
