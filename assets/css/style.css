@@ -49,14 +49,4 @@ body{
     width: max-content !important;
     height:auto !important;
  }
- 
- @media print {
-    #map {
-        height: 500px;
-        margin: 0;
-    }
-    #right-panel {
-        float: none;
-        width: auto;
-    }
-}
+
