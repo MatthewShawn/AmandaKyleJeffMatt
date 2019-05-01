@@ -59,16 +59,21 @@
         <form class="col s12" id="donor-register-page">
             <p class="donor-form">Fill out the form below to have your information available for organization to come and pick up</p>
             <div class="row">
+                    
                 <div class="input-field col s12">
                     <input id="organization-input" type="text" placeholder="Business Name HERE" class="validate">
                     <label for="organization-input">Company Name</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="address-input" type="text" placeholder="Business Location" class="validate">
-                    <label for="address-input">Address</label>
-                </div>
+                    <div id="locationField" class="input-field col s12" >
+                            <input id="autocomplete" placeholder="Business Location" onFocus="geolocate()" type="text" class="validate address-input" />
+                            <label for="address-input">Address</label>
+                        </div>
+                <!-- <div class="input-field col s12">
+                    <input id="autocomplete address-input" placeholder="Business Location" onFocus="geolocate()" type="text"  class="validate">
+                    
+                </div> -->
             </div>
             <div class="row">
                 <div class="input-field col s12">
@@ -224,36 +229,13 @@
 
 
 
-    <div id="locationField">
-        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
-    </div>
+ 
 
     <!-- Note: The address components in this sample are typical. You might need to adjust them for
                  the locations relevant to your app. For more information, see
            https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
       -->
 
-    <table id="address">
-        <tr>
-            <td class="label">Street address</td>
-            <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
-            <td class="wideField" colspan="2"><input class="field" id="route" disabled="true" /></td>
-        </tr>
-        <tr>
-            <td class="label">City</td>
-            <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" /></td>
-        </tr>
-        <tr>
-            <td class="label">State</td>
-            <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true" /></td>
-            <td class="label">Zip code</td>
-            <td class="wideField"><input class="field" id="postal_code" disabled="true" /></td>
-        </tr>
-        <tr>
-            <td class="label">Country</td>
-            <td class="wideField" colspan="3"><input class="field" id="country" disabled="true" /></td>
-        </tr>
-    </table>
 
 
 
@@ -268,10 +250,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
-    </script>
-    <!--</script>src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&libraries=places&callback=initAutocomplete"
+    ></script>
 
 
 
