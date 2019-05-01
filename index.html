@@ -142,7 +142,7 @@
         <p>Fill out form below to claim items!</p>
         <div class="row">
             <div class="input-field col s12">
-                <input id="recipient-name-input" type="text" class="validate">
+                <input id="recipient-name-input" placeholder="Name of Food Recipient" type="text" class="validate">
                 <label for="recipient-name-input">Organization Name</label>
             </div>
 
@@ -153,7 +153,6 @@
             <a class='dropdown-trigger btn' href='#' data-target='dropdown1'
                 style="background-color: #328e04; opacity: .7">Drop
                 Me!</a>
-
             <ul id="dropdown1" class="dropdown-content">
                 <li><a href="#">one</a></li>
                 <li><a href="#">two</a></li>
@@ -162,10 +161,10 @@
                 <li><a href="#">five</a></li>
             </ul>
         </p>
-
         <div class="row">
-            <div class="input-field col s12">
-                <input id="recipient-address-input" type="text" class="validate">
+            <div id="locationField" class="input-field col s12">
+                <input id="autocomplete" placeholder="Organization Location" onFocus="geolocate()" type="text"
+                    class="validate recipient-address-input">
                 <label for="recipient-address-input">Recipient Address</label>
             </div>
 
@@ -239,7 +238,12 @@
     <div class="map-div hide">
         <div id="right-panel"></div>
         <div id="map"></div>
-        <button id="exit-btn" style="background-color: #328e04">Finished with Directions</button>
+        <p class="center-align">
+            <a class="waves-effect waves-light btn-large" id="exit-btn"
+                style="color: white; background-color: #328e04; opacity: .7 ">Take me
+                home</a>
+            <!-- <button id="exit-btn" style="background-color: #328e04">Finished with Directions</button> -->
+        </p>
     </div>
 
 
@@ -264,7 +268,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-      <!-- Google Api link -->
+    <!-- Google Api link -->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&libraries=places&callback=initAutocomplete"></script>
 
