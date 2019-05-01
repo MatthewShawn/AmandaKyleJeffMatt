@@ -127,11 +127,10 @@ h1 {
 
 /* adds style to icon next to heading */
 .fork {
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 255px;
     font-size: 55px;
-    padding: 20px;
+    position: fixed;
+    margin-left: -60px;
+    margin-top: 10px;
 }
 
 /* paragraph style */
@@ -204,6 +203,19 @@ label {
 .dropdown-content li>a, .dropdown-content li>span {
     color: #328e04;
 
+}
+
+/* adds style to food donor table */
+.table-wrapper {
+    margin:50px;
+    background-color: white;
+    opacity: .9;
+}
+
+/* Overwrite materialize style for claim button*/
+.btn, .btn-large, .btn-small {
+    background-color:#328e04;
+    margin: 10px;
 }
 
 /* Map style */

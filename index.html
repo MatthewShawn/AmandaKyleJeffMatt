@@ -31,8 +31,8 @@
 
     <!-- Welcome Page -->
     <div id="welcome-page">
-        <i class="fas fa-utensils fork"></i>
-        <h1>Food Finders</h1>
+
+        <h1><i class="fas fa-utensils fork"></i>Food Finders</h1>
 
         <!-- I thought here we could do some research about food waste, and local shelters/non-profits in need of donated food and describe what we are doing,
         how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
@@ -202,40 +202,40 @@
     </div>
 
     <!-- Possible Jobs Page -->
-    <table class="table food-table hide" id="food-table">
+    <div class="table-wrapper">
+        <table class="table food-table hide" id="food-table">
 
-        <div class="col s12">
-            <h2 class="food-table hide">Food available to be picked up today!</h2>
-        </div>
-        <thead class="thead-dark">
-            <tr>
-                <div class="col s2">
-                    <th>Company</th>
-                    <th>Address</th>
-                    <th>Liason</th>
-                    <th>Contact Number</th>
-                    <th>Product Available</th>
-                    <th>Amount Available</th>
-                    <th>Date of Availability</th>
-                    <th>Time for Pickup</th>
-                    <!-- This column will have a claim button next to each row -->
-                    <th>Claim food by clicking here:</th>
+            <div class="col s12">
+                <h2 class="food-table hide">Food available to be picked up today!</h2>
+            </div>
+            <thead class="thead-dark">
+                <tr>
+                    <div class="col s2">
+                        <th>Company</th>
+                        <th>Address</th>
+                        <th>Liason</th>
+                        <th>Contact Number</th>
+                        <th>Product Available</th>
+                        <th>Amount Available</th>
+                        <th>Date of Availability</th>
+                        <th>Time for Pickup</th>
+                        <!-- This column will have a claim button next to each row -->
+                        <th>Claim food by clicking here:</th>
 
-                    <!-- When claim button is clicked, hide all other elements and take user to recipient form.  
+                        <!-- When claim button is clicked, hide all other elements and take user to recipient form.  
                         Recipient form will ask for organization name and address. Then User will be taken to a confirmation page that shows
                         map/route/directions-->
 
-                </div>
-            </tr>
-        </thead>
-        <!-- Rows where new donors will go -->
-        <tbody>
+                    </div>
+                </tr>
+            </thead>
+            <!-- Rows where new donors will go -->
+            <tbody>
 
-        </tbody>
+            </tbody>
 
-    </table>
-
-
+        </table>
+    </div>
     <div class="map-div hide">
         <div id="right-panel"></div>
         <div id="map"></div>
