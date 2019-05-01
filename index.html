@@ -59,16 +59,21 @@
         <form class="col s12" id="donor-register-page">
             <p class="donor-form">Fill out the form below to have your information available for organization to come and pick up</p>
             <div class="row">
+                    
                 <div class="input-field col s12">
                     <input id="organization-input" type="text" placeholder="Business Name HERE" class="validate">
                     <label for="organization-input">Company Name</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="address-input" type="text" placeholder="Business Location" class="validate">
-                    <label for="address-input">Address</label>
-                </div>
+                    <div id="locationField" class="input-field col s12" >
+                            <input id="autocomplete" placeholder="Business Location" onFocus="geolocate()" type="text" class="validate address-input" />
+                            <label for="address-input">Address</label>
+                        </div>
+                <!-- <div class="input-field col s12">
+                    <input id="autocomplete address-input" placeholder="Business Location" onFocus="geolocate()" type="text"  class="validate">
+                    
+                </div> -->
             </div>
             <div class="row">
                 <div class="input-field col s12">
@@ -224,13 +229,19 @@
 
 
 
+ 
+
+    <!-- Note: The address components in this sample are typical. You might need to adjust them for
+                 the locations relevant to your app. For more information, see
+           https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+      -->
 
 
 
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    
     <!--Javascript link-->
     <script src="assets/javascript/main-code.js"></script>
 
@@ -238,12 +249,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- Places Api CDN -->
 
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
-    </script>
-    <!--</script>src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&libraries=places&callback=initAutocomplete"
+    ></script>
 
 
 

@@ -8,13 +8,15 @@ var config = {
     messagingSenderId: "832785980119"
 };
 firebase.initializeApp(config);
-
+var start = "";
+//var end = "Conifer, CO";
+var end = "";
 var database = firebase.database();
 
 
 // Initial hide logic.
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     $(".food-table").hide();
     $(".donor-form").hide();
@@ -28,7 +30,7 @@ $(document).ready(function() {
 
 // Home page ---> donor-register
 
-$("#donate-button").on("click", function() {
+$("#donate-button").on("click", function () {
 
     $(".donor-form").show();
     $("#welcome-page").hide();
@@ -36,7 +38,7 @@ $("#donate-button").on("click", function() {
 
 // Home page ---> recipent-register
 
-$("#find-button").on("click", function() {
+$("#find-button").on("click", function () {
 
     $(".pickup-form").show();
     $("#welcome-page").hide();
@@ -46,7 +48,7 @@ $("#find-button").on("click", function() {
 
 
 
-$("#add-recipient-btn").on("click", function() {
+$("#add-recipient-btn").on("click", function () {
 
     event.preventDefault();
     $(".pickup-form").hide();
@@ -56,7 +58,7 @@ $("#add-recipient-btn").on("click", function() {
 // donor register ---> request received
 // populate firebase
 // receive from firebase *** incomplete
-$(".donor-btn").on("click", function(event) {
+$(".donor-btn").on("click", function (event) {
     event.preventDefault();
 
 
@@ -71,7 +73,7 @@ $(".donor-btn").on("click", function(event) {
 
     // Grabs user input 
     var organization = $("#organization-input").val().trim();
-    var address = $("#address-input").val().trim();
+    var address = $(".address-input").val().trim();
     var donor = $("#donor-name-input").val().trim();
     var phone = $("#phone-input").val().trim();
     var product = $("#product-input").val().trim();
@@ -102,7 +104,7 @@ $(".donor-btn").on("click", function(event) {
 
     // Clears all of the text boxes
     $("#organization-input").val("");
-    $("#address-input").val("");
+    $(".address-input").val("");
     $("#donor-name-input").val("");
     $("#phone-input").val("");
     $("#product-input").val("");
@@ -113,7 +115,7 @@ $(".donor-btn").on("click", function(event) {
 });
 
 // Firebase event for adding a row in the html when user adds an entry
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
 
     // Stores everything into a variable
@@ -157,12 +159,15 @@ database.ref().on("child_added", function(childSnapshot) {
 
 })
 
-var remove = function(e) {
+var remove = function (e) {
     console.log("I work");
     e.preventDefault
     var key1 = $(this).data("data-key");
     console.log(key1);
     database.ref(key1).remove();
+    $(".food-table").hide();
+    
+    $(".map-div").show();
 }
 
 $(document).on("click", ".claim", remove);
@@ -179,7 +184,7 @@ var pickupTimeSelected = "";
 
 
 // Grab the selected data points
-database.ref().on("child_removed", function(snapshot) {
+database.ref().on("child_removed", function (snapshot) {
     organizationSelected = snapshot.organization;
     addressSelected = snapshot.address;
     nameSeleted = snapshot.name;
@@ -188,6 +193,12 @@ database.ref().on("child_removed", function(snapshot) {
     pickupDateSelected = snapshot.dateAvail;
     pickupTimeSelected = snapshot.pickupTime;
 
+    console.log(addressSelected);
+   
+    start = "Denver, CO";
+    end = addressSelected;
+
+
 
 })
 
@@ -195,9 +206,7 @@ database.ref().on("child_removed", function(snapshot) {
 
 
 
-var start = "Denver, CO";
-//var end = "Conifer, CO";
-var end = "Conifer, CO";
+
 
 $(document).on("click", ".claim", function() {
     //Claim is a dynamic button, so we must used $(document)
@@ -208,16 +217,15 @@ $(document).on("click", ".claim", function() {
     initMap();
 
 
-});
 
-$("#exit-btn").on("click", function() {
+$("#exit-btn").on("click", function () {
     $(".map-div").hide();
     $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
     $("#welcome-page").show();
-    //The empty statements guarantee that the map page is being re-written.
+   //The empty statements guarantee that the map page is being re-written.
     //If it fails to re-write, it will be blank the next time we try to 
     //navigate to it.
     $("#right-panel").empty();
@@ -232,17 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// places Api playground
-// var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"+ ?location=-33.8670522,151.1957362
-//   &radius=500
-//   &types=food
-//   &name=harbour
-//   &key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc
-
-
-
-
-// adding a reference to the main html page input field to grab the address from 
+ 
 
 
 
@@ -254,7 +252,6 @@ function initMap() {
         center: { lat: 41.85, lng: -87.65 }
     });
     directionsDisplay.setMap(map);
-    //directionsDisplay.zoom(7);
     directionsDisplay.setPanel(document.getElementById('right-panel'));
 
     //var control = document.getElementById('floating-panel');
@@ -283,4 +280,131 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
             window.alert('Directions request failed due to ' + status);
         }
     });
+}
+
+var placeSearch, autocomplete;
+
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search predictions to
+  // geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'), {types: ['geocode']});
+
+  // Avoid paying for data that you don't need by restricting the set of
+  // place fields that are returned to just the address components.
+  autocomplete.setFields(['address_component']);
+
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+  console.log(place);
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details,
+  // and then fill-in the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle(
+          {center: geolocation, radius: position.coords.accuracy});
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+})
+
+
+var placeSearch, autocomplete;
+
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search predictions to
+  // geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'), {types: ['geocode']});
+
+  // Avoid paying for data that you don't need by restricting the set of
+  // place fields that are returned to just the address components.
+  autocomplete.setFields(['address_component']);
+
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details,
+  // and then fill-in the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle(
+          {center: geolocation, radius: position.coords.accuracy});
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
 }
