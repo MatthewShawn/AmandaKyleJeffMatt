@@ -199,6 +199,7 @@ database.ref().on("child_removed", function (snapshot) {
     end = addressSelected;
 
 
+
 })
 
 
@@ -206,6 +207,14 @@ database.ref().on("child_removed", function (snapshot) {
 
 
 
+
+$(document).on("click", ".claim", function() {
+    //Claim is a dynamic button, so we must used $(document)
+    $(".food-table").hide();
+    start = "Denver, CO";
+    end = "Conifer, CO";
+    $(".map-div").show();
+    initMap();
 
 
 
@@ -216,10 +225,15 @@ $("#exit-btn").on("click", function () {
     $(".pickup-form").hide();
     $("#request-received").hide();
     $("#welcome-page").show();
+   //The empty statements guarantee that the map page is being re-written.
+    //If it fails to re-write, it will be blank the next time we try to 
+    //navigate to it.
+    $("#right-panel").empty();
+    $("#map").empty();
 });
 
 // dropdown menu for organization type
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
     //var instances = M.Dropdown.init(elems, options);
 });
@@ -269,7 +283,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         origin: start,
         destination: end,
         travelMode: 'DRIVING'
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
         } else {
@@ -340,3 +354,4 @@ function geolocate() {
     });
   }
 }
+})
