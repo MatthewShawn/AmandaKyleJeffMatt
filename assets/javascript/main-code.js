@@ -14,7 +14,7 @@ var database = firebase.database();
 
 // Initial hide logic.
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     $(".food-table").hide();
     $(".donor-form").hide();
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 // Home page ---> donor-register
 
-$("#donate-button").on("click", function () {
+$("#donate-button").on("click", function() {
 
     $(".donor-form").show();
     $("#welcome-page").hide();
@@ -36,7 +36,7 @@ $("#donate-button").on("click", function () {
 
 // Home page ---> recipent-register
 
-$("#find-button").on("click", function () {
+$("#find-button").on("click", function() {
 
     $(".pickup-form").show();
     $("#welcome-page").hide();
@@ -46,7 +46,7 @@ $("#find-button").on("click", function () {
 
 
 
-$("#add-recipient-btn").on("click", function () {
+$("#add-recipient-btn").on("click", function() {
 
     event.preventDefault();
     $(".pickup-form").hide();
@@ -56,7 +56,7 @@ $("#add-recipient-btn").on("click", function () {
 // donor register ---> request received
 // populate firebase
 // receive from firebase *** incomplete
-$(".donor-btn").on("click", function (event) {
+$(".donor-btn").on("click", function(event) {
     event.preventDefault();
 
 
@@ -113,7 +113,7 @@ $(".donor-btn").on("click", function (event) {
 });
 
 // Firebase event for adding a row in the html when user adds an entry
-database.ref().on("child_added", function (childSnapshot) {
+database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val());
 
     // Stores everything into a variable
@@ -157,7 +157,7 @@ database.ref().on("child_added", function (childSnapshot) {
 
 })
 
-var remove = function (e) {
+var remove = function(e) {
     console.log("I work");
     e.preventDefault
     var key1 = $(this).data("data-key");
@@ -179,7 +179,7 @@ var pickupTimeSelected = "";
 
 
 // Grab the selected data points
-database.ref().on("child_removed", function (snapshot) {
+database.ref().on("child_removed", function(snapshot) {
     organizationSelected = snapshot.organization;
     addressSelected = snapshot.address;
     nameSeleted = snapshot.name;
@@ -199,27 +199,33 @@ var start = "Denver, CO";
 //var end = "Conifer, CO";
 var end = "Conifer, CO";
 
-$(document).on("click", ".claim", function () {
+$(document).on("click", ".claim", function() {
     //Claim is a dynamic button, so we must used $(document)
     $(".food-table").hide();
     start = "Denver, CO";
     end = "Conifer, CO";
     $(".map-div").show();
+    initMap();
 
 
 });
 
-$("#exit-btn").on("click", function () {
+$("#exit-btn").on("click", function() {
     $(".map-div").hide();
     $(".food-table").hide();
     $(".donor-form").hide();
     $(".pickup-form").hide();
     $("#request-received").hide();
     $("#welcome-page").show();
+    //The empty statements guarantee that the map page is being re-written.
+    //If it fails to re-write, it will be blank the next time we try to 
+    //navigate to it.
+    $("#right-panel").empty();
+    $("#map").empty();
 });
 
 // dropdown menu for organization type
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
     //var instances = M.Dropdown.init(elems, options);
 });
@@ -248,6 +254,7 @@ function initMap() {
         center: { lat: 41.85, lng: -87.65 }
     });
     directionsDisplay.setMap(map);
+    //directionsDisplay.zoom(7);
     directionsDisplay.setPanel(document.getElementById('right-panel'));
 
     //var control = document.getElementById('floating-panel');
@@ -269,7 +276,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         origin: start,
         destination: end,
         travelMode: 'DRIVING'
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
         } else {
