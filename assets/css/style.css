@@ -1,3 +1,7 @@
+.hide {
+    display:none;
+}
+
 #pending-form {
     border: solid skyblue 2px;
 }
