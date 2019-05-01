@@ -38,6 +38,21 @@ $("#find-button").on("click", function () {
   $("#welcome-page").addClass("hide");
 })
 
+// (KYLE) Take Me Home Btn ---> Homepage
+$("#home-button").on("click", function(){
+
+  $("#welcome-page").removeClass("hide");
+  $("#request-received").addClass("hide");
+})
+
+// (KYLE) Donate Again ---> Donor Form
+$("#again-button").on("click", function(){
+
+  $(".donor-form").removeClass("hide");
+  $("#request-received").addClass("hide");
+})
+
+
 // recipient-register---> possible-jobs page
 
 
