@@ -118,12 +118,10 @@
             </div>
             <!-- Submit button-->
             <!-- On click of submit button, information will be sent to table on recipient page, form hides.-->
-            <p class="center-align">
-                <button class="btn waves-effect waves-light donor-btn" type="submit" name="action" id="add-donor-btn"
-                    style="background-color: #328e04; opacity: .7">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </p>
+            <button class="btn waves-effect waves-light donor-btn center-align" type="submit" name="action"
+                id="add-donor-btn" style="background-color: #328e04">Submit
+                <i class="material-icons right">send</i>
+            </button>
     </div>
 
 
@@ -145,19 +143,16 @@
         </div>
 
         <!-- Dropdown Structure -->
-        <p class="center-align">
-            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'
-                style="background-color: #328e04; opacity: .7">Drop
-                Me!</a>
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1' style="background-color: #328e04">Drop Me!</a>
 
-            <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#">one</a></li>
-                <li><a href="#">two</a></li>
-                <li><a href="#">three</a></li>
-                <li><a href="#">four</a></li>
-                <li><a href="#">five</a></li>
-            </ul>
-        </p>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#">one</a></li>
+            <li><a href="#">two</a></li>
+            <li><a href="#">three</a></li>
+            <li><a href="#">four</a></li>
+            <li><a href="#">five</a></li>
+        </ul>
+
 
         <div class="row">
             <div class="input-field col s12">
@@ -168,12 +163,10 @@
         </div>
         <!-- Submit button-->
         <!-- On click of submit button, information will be sent to table located above, form hides.-->
-        <p class="center-align">
-            <button class="btn waves-effect waves-light" type="submit" name="action" id="add-recipient-btn"
-                style="background-color: #328e04; opacity: .7">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </p>
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="add-recipient-btn"
+            style="background-color: #328e04">Submit
+            <i class="material-icons right">send</i>
+        </button>
     </form>
 
 
@@ -186,12 +179,11 @@
             arrival.</p>
 
         <p class="center-align">
-            <a class="waves-effect waves-light btn-large" id="donate-button"
-                style="background-color: #328e04; opacity: .7">Donate
+            <a class="waves-effect waves-light btn-large" id="donate-button" style="background-color: #328e04">Donate
                 Again</a>
 
             <a class="waves-effect waves-light btn-large" id="home-button"
-                style="color: white; background-color: #328e04; opacity: .7 ">Take me
+                style="color: white; background-color: #328e04 ">Take me
                 home</a>
         </p>
     </div>
@@ -239,13 +231,42 @@
 
 
 
+    <div id="locationField">
+        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+    </div>
 
+    <!-- Note: The address components in this sample are typical. You might need to adjust them for
+                 the locations relevant to your app. For more information, see
+           https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+      -->
+
+    <table id="address">
+        <tr>
+            <td class="label">Street address</td>
+            <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
+            <td class="wideField" colspan="2"><input class="field" id="route" disabled="true" /></td>
+        </tr>
+        <tr>
+            <td class="label">City</td>
+            <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" /></td>
+        </tr>
+        <tr>
+            <td class="label">State</td>
+            <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true" /></td>
+            <td class="label">Zip code</td>
+            <td class="wideField"><input class="field" id="postal_code" disabled="true" /></td>
+        </tr>
+        <tr>
+            <td class="label">Country</td>
+            <td class="wideField" colspan="3"><input class="field" id="country" disabled="true" /></td>
+        </tr>
+    </table>
 
 
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    
     <!--Javascript link-->
     <script src="assets/javascript/main-code.js"></script>
 
@@ -253,14 +274,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+
+
+
+<!-- &callback=initAutocomplete -->
     <!-- Places Api CDN -->
-
-    <script
-        src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAzE0So3-6gKzJKPt3D-NAhYTJQhLJZZmc">
-        </script>
-
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMACMs-Hb-pK74S2hYLhsnapumThklgBY&libraries=places&callback=initMap">
+    </script>
 
 
 
