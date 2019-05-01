@@ -158,15 +158,28 @@ database.ref().on("child_added", function (childSnapshot) {
   }
 })
 
-var remove = function (e) {
-  console.log("I work");
-  e.preventDefault
-  var key1 = $(this).data("data-key");
-  console.log(key1);
-  // database.ref(key1).remove();
-  $(".food-table").addClass("hide");
+// var remove = function (e) {
+//   console.log("I work");
+//   e.preventDefault
+//   var key1 = $(this).data("data-key");
+//   console.log(key1);
+//   // database.ref(key1).remove();
+//   $(".food-table").addClass("hide");
 
-  $(".map-div").removeClass("hide");
+//   $(".map-div").removeClass("hide");
+// }
+
+var remove = function remove(e){
+    console.log("I work");
+    var key = $(this).data("data-key");
+    // call db update child (key)
+   var parent =  $("."+key).parent('tr');
+   console.log(database.ref(key))
+
+//    How to access specific child elements in firebase????????
+//    database.ref(key).claimed.set("true");
+   console.log(parent);
+    parent.remove()
 }
 
 $(document).on("click", ".claim", remove);
@@ -211,7 +224,7 @@ database.ref().on("child_removed", function (snapshot) {
 
 $(document).on("click", ".claim", function () {
   //Claim is a dynamic button, so we must used $(document)
-  $(".food-table").addClass("hide");
+//   $(".food-table").addClass("hide");
   start = "Denver, CO";
   end = "Conifer, CO";
   $(".map-div").removeClass("hide");
