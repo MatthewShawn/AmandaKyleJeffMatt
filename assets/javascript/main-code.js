@@ -173,15 +173,34 @@ database.ref().on("child_added", function (childSnapshot) {
   }
 })
 
-var remove = function (e) {
-  console.log("I work");
-  e.preventDefault
-  var key1 = $(this).data("data-key");
-  console.log(key1);
-  // database.ref(key1).remove();
-  $(".food-table").addClass("hide");
+// var remove = function (e) {
+//   console.log("I work");
+//   e.preventDefault
+//   var key1 = $(this).data("data-key");
+//   console.log(key1);
+//   // database.ref(key1).remove();
+//   $(".food-table").addClass("hide");
 
-  $(".map-div").removeClass("hide");
+//   $(".map-div").removeClass("hide");
+// }
+
+var remove = function remove(e){
+    console.log("I work");
+    var key = $(this).data("data-key");
+    console.log(key);
+    // call db update child (key)
+   var parent =  $("."+key).parent('tr');
+   console.log(database.ref(key))
+
+//    How to access specific child elements in firebase????????
+//    database.ref(key).claimed.set("true");
+   console.log(parent);
+    parent.remove()
+    start = "Denver, CO";
+    end = "Conifer, CO";
+    $(".map-div").removeClass("hide");
+    initMap();
+
 }
 
 $(document).on("click", ".claim", remove);
@@ -219,22 +238,8 @@ database.ref().on("child_removed", function (snapshot) {
 })
 
 
-
-
-
-
-
-$(document).on("click", ".claim", function () {
-  //Claim is a dynamic button, so we must used $(document)
-  $(".food-table").addClass("hide");
-  start = "Denver, CO";
-  end = "Conifer, CO";
-  $(".map-div").removeClass("hide");
-  initMap();
-
-
-
-  $("#exit-btn").on("click", function () {
+// The button that takes you back to the home page 
+$("#exit-btn").on("click", function () {
     $(".map-div").addClass("hide");
     $(".food-table").addClass("hide");
     $(".donor-form").addClass("hide");
@@ -248,17 +253,18 @@ $(document).on("click", ".claim", function () {
     $("#map").empty();
   });
 
-  // dropdown menu for organization type
-  document.addEventListener('DOMContentLoaded', function () {
+ // dropdown menu for organization type
+ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.dropdown-trigger');
     //var instances = M.Dropdown.init(elems, options);
   });
 
 
-
-
-
-
+$(document).on("click", ".claim", function () {
+  //Claim is a dynamic button, so we must used $(document)
+//   $(".food-table").addClass("hide");
+  
+})
 
   function initMap() {
     var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -360,7 +366,7 @@ $(document).on("click", ".claim", function () {
       });
     }
   }
-})
+
 
 
 var placeSearch, autocomplete;
