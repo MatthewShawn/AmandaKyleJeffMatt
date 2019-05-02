@@ -155,17 +155,19 @@
 
         <!-- Dropdown Structure -->
         <p class="center-align">
-            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'
-                style="background-color: #328e04; opacity: .7">Drop
-                Me!</a>
-            <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#">one</a></li>
-                <li><a href="#">two</a></li>
-                <li><a href="#">three</a></li>
-                <li><a href="#">four</a></li>
-                <li><a href="#">five</a></li>
-            </ul>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected></option>
+                        <option value="1">Food Bank</option>
+                        <option value="2">Shelter</option>
+                        <option value="3">Non-Profit</option>
+                    </select>
+                    <label>Organization type</label>
+                </div>
+            </div>
         </p>
+
         <div class="row">
             <div id="locationField" class="input-field col s12">
                 <input id="autocomplete" placeholder="Organization Location" onFocus="geolocate()" type="text"
@@ -196,7 +198,11 @@
 
         <p class="center-align">
             <a class="waves-effect waves-light btn-large" id="again-button"
+<<<<<<< HEAD
                 style="color: white; background-color: #328e04; opacity: .7">Donate
+=======
+                style="background-color: #328e04; color: white; opacity: .7">Donate
+>>>>>>> 44c6ad03c06a8f4b562cd597cbc37a68f19275fd
                 Again</a>
 
             <a class="waves-effect waves-light btn-large" id="home-button"
@@ -206,11 +212,11 @@
     </div>
 
     <!-- Possible Jobs Page -->
-    <div class="table-wrapper">
-        <table class="table food-table hide" id="food-table">
 
+    <div class="table-wrapper">
+        <h2 class="table-title hide">Great! Here is a list of available items for you to choose from:</h2>
+        <table class="table food-table hide" id="food-table">
             <div class="col s12">
-                <h2 class="food-table hide">Food available to be picked up today!</h2>
             </div>
             <thead class="thead-dark">
                 <tr>
