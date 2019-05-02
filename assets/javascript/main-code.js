@@ -17,72 +17,92 @@ var database = firebase.database();
 // Initial hide logic.
 
 $(document).ready(function () {
-  $("body").addClass("test");
-  $('.modal').modal();
-  $('.dropdown-trigger').dropdown();
-  $('select').formSelect();
+    $("body").addClass("test");
+    $('.modal').modal();
+    $('.dropdown-trigger').dropdown();
+    $('select').formSelect();
 
-})
+});
 
 // Home page ---> donor-register
 
-$("#donate-button").on("click", function() {
+$("#donate-button").on("click", function () {
 
     $(".donor-form").removeClass("hide");
     $("#welcome-page").addClass('hide');
+    $(".table-title").addClass("hide");
+    $("#request-received").addClass("hide");
+
 });
+
+// (KYLE) Donor Form ---> Homepage
+$("#back-button").on("click", function () {
+
+    $("#welcome-page").removeClass("hide");
+    $(".donor-form").addClass("hide");
+    $(".table-title").addClass("hide");
+    $("#request-received").addClass("hide");
+
+});
+
 
 // Home page ---> recipent-register
 
-$("#find-button").on("click", function() {
+$("#find-button").on("click", function () {
 
     $(".pickup-form").removeClass("hide");
     $("#welcome-page").addClass("hide");
-})
+    $(".table-title").addClass("hide");
+    $("#request-received").addClass("hide");
+});
 
 // (KYLE) Take Me Home Btn ---> Homepage
 
-$("#home-button").on("click", function() {
+$("#home-button").on("click", function () {
 
 
     $("#welcome-page").removeClass("hide");
     $("#request-received").addClass("hide");
-})
+    $(".table-title").addClass("hide");
+});
 
 // (KYLE) Donate Again ---> Donor Form
 
-$("#again-button").on("click", function() {
+$("#again-button").on("click", function () {
 
 
     $(".donor-form").removeClass("hide");
     $("#request-received").addClass("hide");
-})
+    $(".table-title").addClass("hide");
+});
 
 
 // recipient-register---> possible-jobs page
 
 
 
-$("#add-recipient-btn").on("click", function() {
+$("#add-recipient-btn").on("click", function () {
 
 
-  event.preventDefault();
-  $(".pickup-form").addClass("hide");
-  $("#food-table").removeClass("hide");
-  $(".table-title").removeClass("hide");
+    event.preventDefault();
+    $(".pickup-form").addClass("hide");
+    $("#food-table").removeClass("hide");
+    $(".table-title").removeClass("hide");
+    $("#request-received").addClass("hide");
 
 })
 
 // donor register ---> request received
 // populate firebase
 // receive from firebase *** incomplete
-$(".donor-btn").on("click", function(event) {
+$(".donor-btn").on("click", function (event) {
     event.preventDefault();
 
 
     // hide and show logic
-    $(".donor-form").addClass("hide");
     $("#request-received").removeClass("hide");
+    $(".donor-form").addClass("hide");
+    $(".table-title").addClass("hide");
 
     // var newRow = $("<tr>");
 
@@ -134,7 +154,7 @@ $(".donor-btn").on("click", function(event) {
 });
 
 // Firebase event for adding a row in the html when user adds an entry
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
 
     if (!childSnapshot.val().claimed) {
@@ -166,14 +186,14 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-    var key = childSnapshot.key;
-    newRow.data("data-key", key);
-    var newButton = $("<button>");
-    newButton.attr("data-key", key);
-    newButton.text("Claim!")
-    newButton.data("data-key", key);
-    newButton.addClass("claim waves-effect waves-light btn-large " + key);
-    newRow.append(newButton);
+        var key = childSnapshot.key;
+        newRow.data("data-key", key);
+        var newButton = $("<button>");
+        newButton.attr("data-key", key);
+        newButton.text("Claim!")
+        newButton.data("data-key", key);
+        newButton.addClass("claim waves-effect waves-light btn-large " + key);
+        newRow.append(newButton);
 
 
 
@@ -237,7 +257,7 @@ var pickupTimeSelected = "";
 
 
 // Grab the selected data points
-database.ref().on("child_removed", function(snapshot) {
+database.ref().on("child_removed", function (snapshot) {
     organizationSelected = snapshot.organization;
     addressSelected = snapshot.address;
     nameSeleted = snapshot.name;
@@ -257,13 +277,14 @@ database.ref().on("child_removed", function(snapshot) {
 
 
 // The button that takes you back to the home page 
-$("#exit-btn").on("click", function() {
+$("#exit-btn").on("click", function () {
     $(".map-div").addClass("hide");
     $(".food-table").addClass("hide");
     $(".donor-form").addClass("hide");
     $(".pickup-form").addClass("hide");
     $("#request-received").addClass("hide");
     $("#welcome-page").removeClass("hide");
+    $(".table-title").addClass("hide");
     //The empty statements guarantee that the map page is being re-written.
     //If it fails to re-write, it will be blank the next time we try to 
     //navigate to it.
@@ -272,13 +293,13 @@ $("#exit-btn").on("click", function() {
 });
 
 // dropdown menu for organization type
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.dropdown-trigger');
     //var instances = M.Dropdown.init(elems, options);
 });
 
 
-$(document).on("click", ".claim", function() {
+$(document).on("click", ".claim", function () {
     //Claim is a dynamic button, so we must used $(document)
     //   $(".food-table").addClass("hide");
 
@@ -297,11 +318,11 @@ function initMap() {
     directionsDisplay.setPanel(document.getElementById('right-panel'));
 
 
-  //var control = document.getElementById('floating-panel');
-  //control.style.display = 'block';
-  //map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+    //var control = document.getElementById('floating-panel');
+    //control.style.display = 'block';
+    //map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
-  //var onChangeHandler = function() {
+    //var onChangeHandler = function() {
 
 
     calculateAndDisplayRoute(directionsService, directionsDisplay);
@@ -317,7 +338,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         origin: start,
         destination: end,
         travelMode: 'DRIVING'
-    }, function(response, status) {
+    }, function (response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
         } else {
@@ -346,9 +367,9 @@ function initAutocomplete() {
         document.getElementById('autocomplete'), { types: ['geocode'] });
 
 
-  // Avoid paying for data that you don't need by restricting the set of
-  // place fields that are returned to just the address components.
-  autocomplete.setFields(['address_component']);
+    // Avoid paying for data that you don't need by restricting the set of
+    // place fields that are returned to just the address components.
+    autocomplete.setFields(['address_component']);
 
 
     // When the user selects an address from the drop-down, populate the
@@ -383,7 +404,7 @@ function fillInAddress() {
 function geolocate() {
 
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var geolocation = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -447,7 +468,7 @@ function fillInAddress() {
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var geolocation = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude

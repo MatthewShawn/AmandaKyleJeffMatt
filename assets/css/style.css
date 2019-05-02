@@ -1,6 +1,4 @@
-.hide {
-    display:none;
-}
+
 
 #pending-form {
     border: solid skyblue 2px;
@@ -250,3 +248,6 @@ tbody {
     }
 }
 
+.hide {
+    display:none;
+}
