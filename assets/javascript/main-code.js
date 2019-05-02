@@ -30,6 +30,13 @@ $("#donate-button").on("click", function () {
   $("#welcome-page").addClass('hide');
 });
 
+// (KYLE) Donor Form ---> Homepage
+$("#back-button").on("click", function(){
+
+  $("#welcome-page").removeClass("hide");
+  $(".donor-form").addClass("hide");
+  
+})
 // Home page ---> recipent-register
 
 $("#find-button").on("click", function () {
