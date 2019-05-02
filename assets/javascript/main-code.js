@@ -16,10 +16,12 @@ var database = firebase.database();
 
 // Initial hide logic.
 
-$(document).ready(function() {
-    $("body").addClass("test");
-    $('.modal').modal();
-    $('.dropdown-trigger').dropdown();
+$(document).ready(function () {
+  $("body").addClass("test");
+  $('.modal').modal();
+  $('.dropdown-trigger').dropdown();
+  $('select').formSelect();
+
 })
 
 // Home page ---> donor-register
@@ -39,14 +41,18 @@ $("#find-button").on("click", function() {
 })
 
 // (KYLE) Take Me Home Btn ---> Homepage
+
 $("#home-button").on("click", function() {
+
 
     $("#welcome-page").removeClass("hide");
     $("#request-received").addClass("hide");
 })
 
 // (KYLE) Donate Again ---> Donor Form
+
 $("#again-button").on("click", function() {
+
 
     $(".donor-form").removeClass("hide");
     $("#request-received").addClass("hide");
@@ -59,9 +65,12 @@ $("#again-button").on("click", function() {
 
 $("#add-recipient-btn").on("click", function() {
 
-    event.preventDefault();
-    $(".pickup-form").addClass("hide");
-    $("#food-table").removeClass("hide");
+
+  event.preventDefault();
+  $(".pickup-form").addClass("hide");
+  $("#food-table").removeClass("hide");
+  $(".table-title").removeClass("hide");
+
 })
 
 // donor register ---> request received
@@ -156,14 +165,16 @@ database.ref().on("child_added", function(childSnapshot) {
         );
 
 
-        var key = childSnapshot.key;
-        newRow.data("data-key", key);
-        var newButton = $("<button>");
-        newButton.attr("data-key", key);
-        newButton.text("Claim!")
-        newButton.data("data-key", key);
-        newButton.addClass("claim btn btn-primary " + key);
-        newRow.append(newButton);
+
+    var key = childSnapshot.key;
+    newRow.data("data-key", key);
+    var newButton = $("<button>");
+    newButton.attr("data-key", key);
+    newButton.text("Claim!")
+    newButton.data("data-key", key);
+    newButton.addClass("claim waves-effect waves-light btn-large " + key);
+    newRow.append(newButton);
+
 
 
 
@@ -185,6 +196,7 @@ database.ref().on("child_added", function(childSnapshot) {
 // }
 
 var remove = function remove(e) {
+
     console.log("I work");
     var key = $(this).data("data-key");
     console.log(key);
@@ -205,6 +217,7 @@ var remove = function remove(e) {
     $("#map").empty();
     $(".map-div").removeClass("hide");
     initMap();
+
 
 }
 
@@ -269,9 +282,11 @@ $(document).on("click", ".claim", function() {
     //Claim is a dynamic button, so we must used $(document)
     //   $(".food-table").addClass("hide");
 
+
 })
 
 function initMap() {
+
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -281,11 +296,13 @@ function initMap() {
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-    //var control = document.getElementById('floating-panel');
-    //control.style.display = 'block';
-    //map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
-    //var onChangeHandler = function() {
+  //var control = document.getElementById('floating-panel');
+  //control.style.display = 'block';
+  //map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
+  //var onChangeHandler = function() {
+
 
     calculateAndDisplayRoute(directionsService, directionsDisplay);
     //};
@@ -307,11 +324,13 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
             window.alert('Directions request failed due to ' + status);
         }
     });
+
 }
 
 var placeSearch, autocomplete;
 
 var componentForm = {
+
     street_number: 'short_name',
     route: 'long_name',
     locality: 'long_name',
@@ -326,9 +345,11 @@ function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('autocomplete'), { types: ['geocode'] });
 
-    // Avoid paying for data that you don't need by restricting the set of
-    // place fields that are returned to just the address components.
-    autocomplete.setFields(['address_component']);
+
+  // Avoid paying for data that you don't need by restricting the set of
+  // place fields that are returned to just the address components.
+  autocomplete.setFields(['address_component']);
+
 
     // When the user selects an address from the drop-down, populate the
     // address fields in the form.
@@ -354,11 +375,13 @@ function fillInAddress() {
             document.getElementById(addressType).value = val;
         }
     }
+
 }
 
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var geolocation = {
@@ -369,6 +392,7 @@ function geolocate() {
             autocomplete.setBounds(circle.getBounds());
         });
     }
+
 }
 
 
