@@ -190,10 +190,10 @@ var remove = function remove(e){
     console.log(key);
     // call db update child (key)
    var parent =  $("."+key).parent('tr');
-   console.log(database.ref(key))
+   
+//    this is the filter
+   database.ref().child(key).update({claimed: true})
 
-//    How to access specific child elements in firebase????????
-//    database.ref(key).claimed.set("true");
    console.log(parent);
     parent.remove()
     start = "Denver, CO";
