@@ -221,22 +221,19 @@ var remove = function remove(e) {
     var key = $(this).data("data-key");
     console.log(key);
     // call db update child (key)
-    var parent = $("." + key).parent('tr');
-    console.log(database.ref(key))
+   var parent =  $("."+key).parent('tr');
+   
+//    this is the filter
+   database.ref().child(key).update({claimed: true})
 
-    //    How to access specific child elements in firebase????????
-    //    database.ref(key).claimed.set("true");
-    console.log(parent);
-    parent.remove();
-    console.log("Event: " + e);
+   console.log(parent);
+    parent.remove()
     start = "Denver, CO";
     end = "Conifer, CO";
     // Clean out the directions and map panels, because we were 
     // getting info stacked in the directions panel.
-    $("#right-panel").empty();
-    $("#map").empty();
-    $(".map-div").removeClass("hide");
-    initMap();
+    
+    
 
 
 }
@@ -257,20 +254,25 @@ var pickupTimeSelected = "";
 
 
 // Grab the selected data points
-database.ref().on("child_removed", function (snapshot) {
-    organizationSelected = snapshot.organization;
-    addressSelected = snapshot.address;
-    nameSeleted = snapshot.name;
-    phoneSelected = snapshot.phone;
-    amountSelected = snapshot.amount;
-    pickupDateSelected = snapshot.dateAvail;
-    pickupTimeSelected = snapshot.pickupTime;
+database.ref().on("child_changed", function(snapshot) {
+    organizationSelected = snapshot.val().organization;
+    addressSelected = snapshot.val().address;
+    console.log(snapshot.val().address);
+    nameSeleted = snapshot.val().name;
+    phoneSelected = snapshot.val().phone;
+    amountSelected = snapshot.val().amount;
+    pickupDateSelected = snapshot.val().dateAvail;
+    pickupTimeSelected = snapshot.val().pickupTime;
 
-    console.log(addressSelected);
+    
 
     start = "Denver, CO";
     end = addressSelected;
 
+    $("#right-panel").empty();
+    $("#map").empty();
+    $(".map-div").removeClass("hide");
+    initMap();
     //initMap();
 
 })
