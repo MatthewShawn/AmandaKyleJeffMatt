@@ -12,6 +12,7 @@ var start = "";
 //var end = "Conifer, CO";
 var end = "";
 var database = firebase.database();
+var elems = "";
 
 
 // Initial hide logic.
@@ -21,7 +22,9 @@ $(document).ready(function () {
     $('.modal').modal();
     $('.dropdown-trigger').dropdown();
     $('select').formSelect();
-
+    var recipientAddress = "";
+    var recipentName = "";
+    var recipientType = "";
 });
 
 // Home page ---> donor-register
@@ -69,8 +72,6 @@ $("#home-button").on("click", function () {
 // (KYLE) Donate Again ---> Donor Form
 
 $("#again-button").on("click", function () {
-
-
     $(".donor-form").removeClass("hide");
     $("#request-received").addClass("hide");
     $(".table-title").addClass("hide");
@@ -78,9 +79,6 @@ $("#again-button").on("click", function () {
 
 
 // recipient-register---> possible-jobs page
-
-
-
 $("#add-recipient-btn").on("click", function () {
 
 
@@ -131,7 +129,9 @@ $(".donor-btn").on("click", function (event) {
         amount: amount,
         dateAvail: dateAvailable,
         pickupTime: pickupTime,
-        claimed: false
+        claimed: false,
+        picked: false,
+
     };
 
 
@@ -153,6 +153,26 @@ $(".donor-btn").on("click", function (event) {
 
 });
 
+
+// .recipient-address-input = class
+// #add-recipient-btn = submit button 
+//  var recipentName = "";
+// var recipientType
+// #recipient-name-input  
+$("#add-recipient-btn").on("click", function () {
+
+    recipientAddress = $(".recipient-address-input").val().trim();
+    recipientName = $("#recipient-name-input").val().trim();
+    recipientType = $("#recipientType").text();
+
+    var instance = M.Dropdown.getInstance(elems);
+
+    console.log(instance);
+
+    console.log(recipientName);
+    console.log(recipientType);
+    console.log(recipientAddress); 
+})
 // Firebase event for adding a row in the html when user adds an entry
 database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
@@ -203,40 +223,45 @@ database.ref().on("child_added", function (childSnapshot) {
         $("#food-table > tbody").append(newRow);
     }
 })
-
-// var remove = function (e) {
-//   console.log("I work");
-//   e.preventDefault
-//   var key1 = $(this).data("data-key");
-//   console.log(key1);
-//   // database.ref(key1).remove();
-//   $(".food-table").addClass("hide");
-
-//   $(".map-div").removeClass("hide");
-// }
+var parent;
+var key;
 
 var remove = function remove(e) {
-
     console.log("I work");
     var key = $(this).data("data-key");
     console.log(key);
     // call db update child (key)
-   var parent =  $("."+key).parent('tr');
-   
-//    this is the filter
-   database.ref().child(key).update({claimed: true})
+    var parent = $("." + key).parent('tr');
 
-   console.log(parent);
-    parent.remove()
+
+    //    this is the filter changer
+    database.ref().child(key).update({ claimed: true })
+    $(".food-table").addClass("hide");
+    console.log(parent);
+
     start = "Denver, CO";
     end = "Conifer, CO";
+    $(document).on("click", ".deny", function () {
+        $(".map-div").addClass("hide");
+        database.ref().child(key).update({ claimed: false })
+        $(".append-me").text("");
+        $(".food-table").removeClass("hide");
+    })
+    $(document).on("click", ".accept", function () {
+        $(".append-me").removeClass("hide");
+        $(".thank-you").addClass("hide");
+        $(".directions-btn").removeClass("hide");
+        $(".table-title").addClass("hide");
+        $(".food-table").addClass("hide");
+        parent.remove();
+
+
+    })
+
     // Clean out the directions and map panels, because we were 
     // getting info stacked in the directions panel.
-    
-    
-
-
 }
+
 
 $(document).on("click", ".claim", remove);
 
@@ -254,7 +279,7 @@ var pickupTimeSelected = "";
 
 
 // Grab the selected data points
-database.ref().on("child_changed", function(snapshot) {
+database.ref().on("child_changed", function (snapshot) {
     organizationSelected = snapshot.val().organization;
     addressSelected = snapshot.val().address;
     console.log(snapshot.val().address);
@@ -264,7 +289,7 @@ database.ref().on("child_changed", function(snapshot) {
     pickupDateSelected = snapshot.val().dateAvail;
     pickupTimeSelected = snapshot.val().pickupTime;
 
-    
+
 
     start = "Denver, CO";
     end = addressSelected;
@@ -297,16 +322,37 @@ $("#exit-btn").on("click", function () {
 // dropdown menu for organization type
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.dropdown-trigger');
+
     //var instances = M.Dropdown.init(elems, options);
 });
 
 
 $(document).on("click", ".claim", function () {
-    //Claim is a dynamic button, so we must used $(document)
-    //   $(".food-table").addClass("hide");
+    $("#claimedMessage").removeClass("hide");
+    $(".thank-you").removeClass("hide");
+    $(".accept").removeClass("hide");
+    $(".deny").removeClass("hide");
 
+
+    var orgDiv = $("<h6>");
+    var adrDiv = $("<div>");
+    var contactDiv = $("<div>");
+    var timeDiv = $("<div>");
+
+    orgDiv.text(organizationSelected);
+    adrDiv.text(addressSelected);
+    contactDiv.text(nameSeleted + " is available at " + phoneSelected)
+    timeDiv.text("Pickup on " + pickupDateSelected + " at " + pickupTimeSelected)
+
+
+    $(".append-me").prepend(orgDiv);
+    $(".append-me").prepend(adrDiv);
+    $(".append-me").prepend(contactDiv);
+    $(".append-me").prepend(timeDiv);
 
 })
+
+
 
 function initMap() {
 
