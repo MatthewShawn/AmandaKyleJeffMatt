@@ -102,8 +102,8 @@ body {
     width: 500px;
     border: solid black 2px;
     height: 500px;
-    margin: 0 auto;
-    margin-right: 400px;
+    /* margin: 0 auto; */
+    
 }
 
 #floating-panel {
@@ -250,4 +250,15 @@ tbody {
 
 .hide {
     display:none;
+}
+.accept deny{
+    width: 100%;
+    margin: 0 auto;
+    background: #328e04; 
+    opacity: 1;
+    color: black;
+}
+
+.card-image{
+    height: 10%;
 }
