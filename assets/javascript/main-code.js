@@ -79,16 +79,6 @@ $("#again-button").on("click", function () {
 
 
 // recipient-register---> possible-jobs page
-$("#add-recipient-btn").on("click", function () {
-
-
-    event.preventDefault();
-    $(".pickup-form").addClass("hide");
-    $("#food-table").removeClass("hide");
-    $(".table-title").removeClass("hide");
-    $("#request-received").addClass("hide");
-
-})
 
 // donor register ---> request received
 // populate firebase
@@ -160,12 +150,22 @@ $(".donor-btn").on("click", function (event) {
 // var recipientType
 // #recipient-name-input  
 $("#add-recipient-btn").on("click", function () {
+    event.preventDefault();
 
     recipientAddress = $(".recipient-address-input").val().trim();
     recipientName = $("#recipient-name-input").val().trim();
     recipientType = $("#recipientType").text();
 
+    start = recipientAddress;
+
     var instance = M.Dropdown.getInstance(elems);
+
+    
+    $(".pickup-form").addClass("hide");
+    $("#food-table").removeClass("hide");
+    $(".table-title").removeClass("hide");
+    $("#request-received").addClass("hide");
+
 
     console.log(instance);
 
@@ -226,6 +226,8 @@ database.ref().on("child_added", function (childSnapshot) {
 var parent;
 var key;
 
+
+
 var remove = function remove(e) {
     console.log("I work");
     var key = $(this).data("data-key");
@@ -239,7 +241,7 @@ var remove = function remove(e) {
     $(".food-table").addClass("hide");
     console.log(parent);
 
-    start = "Denver, CO";
+    
     end = "Conifer, CO";
     $(document).on("click", ".deny", function () {
         $(".map-div").addClass("hide");
@@ -291,7 +293,7 @@ database.ref().on("child_changed", function (snapshot) {
 
 
 
-    start = "Denver, CO";
+   
     end = addressSelected;
 
     $("#right-panel").empty();
@@ -415,6 +417,8 @@ function initAutocomplete() {
     console.log("InitAutoComplete")
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('autocomplete'), { types: ['geocode'] });
+        var place = autocomplete.getPlace();
+        console.log(place);
     autocomplete2 = new google.maps.places.Autocomplete(
         document.getElementById('autocomplete2'), {types: ['geocode']});
 
@@ -432,22 +436,47 @@ function initAutocomplete() {
 }
 
 
+function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+    var place2 = autocomplete2.getPlace();
+    
+
+    for (var component in componentForm) {
+        document.getElementById(component).value = '';
+        document.getElementById(component).disabled = false;
+    }
+
+    // Get each component of the address from the place details,
+    // and then fill-in the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+        }
+    }
+
+}
+
+
+
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
 
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var geolocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({ center: geolocation, radius: position.coords.accuracy });
-            autocomplete.setBounds(circle.getBounds());
-            
-        });
-    }
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+            var circle = new google.maps.Circle({ center: geolocation, radius: position.coords.accuracy});
+             autocomplete.setBounds(circle.getBounds());
+            autocomplete2.setBounds(circle.getBounds());
 
-}
+      });
+    }
+  }
 
 
