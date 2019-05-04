@@ -327,7 +327,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //var instances = M.Dropdown.init(elems, options);
 });
-
+$(".directions-btn").on("click", function(){
+    $("#right-panel").removeClass("hide");
+})
 
 $(document).on("click", ".claim", function () {
     $("#claimedMessage").removeClass("hide");
