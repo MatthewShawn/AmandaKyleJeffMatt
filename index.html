@@ -33,27 +33,43 @@
     <div id="welcome-page">
 
         <h1><i class="fas fa-utensils fork"></i>Food Finders</h1>
-
+ <p class="center-align">
+            <a class="waves-effect waves-light btn-large" id="donate-button">Donate</a>
+            <a class="waves-effect waves-light btn-large" id="find-button">Find</a>
+        </p>
         <!-- I thought here we could do some research about food waste, and local shelters/non-profits in need of donated food and describe what we are doing,
         how to use it, and also some stats on why this is important. For now I've just copied what Jeff sent to the TAS about the project -->
 
 
-        <p id="about-paragraph">Food finders... Uber for food donations. We are planning on making a proof of concept
-            web app that helps connect Non-profit food finder programs/ freelnace volunteers with hotels, restaurants,
-            and grocery stores that have excess food. An institution
-            that has excess food can logon to their profile and list what food they have and the quantity, this will
+        <p id="about-paragraph">Welcome!! This is a proof of concept
+            web app that aims to help connect Non-profit food finder programs/ freelance volunteers with hotels,
+            restaurants,
+            and grocery stores that have excess food. <br>
+            An institution
+            that has excess food can theoretically logon to their profile and list what food they have and the quantity,
+            this will
             then ping the volunteer and the volunteer can decide what jobs they intend on filling. The web app will also
             point the volunteer to the
             closest non-profit food bank. We will implement the google maps api to get the location data on the
             volunteers and location of food waste and a firebase database to help notify the volunteers. We will get the
             directions and time until arrival
-            from google maps and we intend on using the yelp api to help auto create profiles for institutions.</p>
+            from google maps and we intend on using the places api to help fully auto create profiles for institutions.
+        </p>
+      
+        
+        <p class="facts"> According to USDA, more than 41 million Americans face hunger, including nearly 13 million children. Some of
+            the groups experiencing the highest rates of food insecurity include households with children led by single
+            women and people living below the poverty level.</p>
+        
+       
+        <h3  class="fas fa-utensils Legal" style="text-align:center">Legal Protections</h3>
+        <p>Donors are protects by State (12-21-113, Colorado Revised Statutes, 1987) and Federal (PL 104-210, 1996) Good
+            Samaritan Acts. When donors give food to nonprofit organizations to distribute to needy individuals, they
+            are protected from civil and criminal liability, should the product, donated in good faith, later cause harm
+            to the recipient. </p>
 
         <!-- Here is our on click buttons for donator and for receiver which takes you to each form -->
-        <p class="center-align">
-            <a class="waves-effect waves-light btn-large" id="donate-button">Donate</a>
-            <a class="waves-effect waves-light btn-large" id="find-button">Find</a>
-        </p>
+       
 
 
     </div>
@@ -78,7 +94,7 @@
                         class="validate address-input" />
                     <label for="address-input">Address</label>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="input-field col s12">
@@ -159,6 +175,7 @@
                         <option value="1">Food Bank</option>
                         <option value="2">Shelter</option>
                         <option value="3">Non-Profit</option>
+                        <option value="4">Other</option>
                     </select>
                     <label>Organization type</label>
                 </div>
@@ -166,11 +183,11 @@
         </p>
 
         <div class="row">
-                <div id="locationField" class="input-field col s12">
-                        <input id="autocomplete2" placeholder="Business Location" onFocus="geolocate()" type="text"
-                            class="validate recipient-address-input" />
-                        <label for="address-input">Address</label>
-                    </div>
+            <div id="locationField" class="input-field col s12">
+                <input id="autocomplete2" placeholder="Business Location" onFocus="geolocate()" type="text"
+                    class="validate recipient-address-input" />
+                <label for="address-input">Address</label>
+            </div>
 
         </div>
         <!-- Submit button-->
@@ -209,30 +226,32 @@
         <h2 class="table-title hide">Great! Here is a list of available items for you to choose from:</h2>
         <div class="map-div hide table-wrapper row">
 
-    <!-- Map Div -->
-                <div id="map" class="col s5"></div>
-                
-                <div id="claimedMessage" class="col s12">
-                        
-                                <div class="col s12 m12">
-                                  <div class="card">
-                                    <div class="card-image">
-                                      <img src="assets/images/VitaminC_Header.jpg">
-                                      <span class="card-title hide">Card Title</span>
-                                      <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                                    </div>
-                                    <div class="card-content thank-you hide">
-                                      <p>Hey, you're Awesome! Would you like to accept this order and have the Donor know that you are on your way?</p>
-                                      <a class="waves-effect waves-light btn accept hide">Accept!</a>
-                                      <a class="waves-effect waves-light btn deny hide">Deny</a>
-                                    </div>
-                                    <div class="card-content append-me hide"></div>
-                                    <a class="waves-effect waves-light btn directions-btn hide">Directions</a>
-                                  </div>
-                                </div>
-                              </div>
-                  
+            <!-- Map Div -->
+            <div id="map" class="col s5"></div>
+
+            <div id="claimedMessage" class="col s12">
+
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="assets/images/VitaminC_Header.jpg">
+                            <span class="card-title hide">Card Title</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content thank-you hide">
+                            <p>Hey, you're Awesome! Would you like to accept this order and have the Donor know that you
+                                are on your way?</p>
+                            <a class="waves-effect waves-light btn accept hide">Accept!</a>
+                            <a class="waves-effect waves-light btn deny hide">Deny</a>
+                        </div>
+                        <div class="card-content append-me hide"></div>
+                        <a class="waves-effect waves-light btn directions-btn hide">Directions</a>
+                    </div>
                 </div>
+            </div>
+
+        </div>
         <table class="table food-table hide" id="food-table">
             <div class="col s12">
             </div>
@@ -265,16 +284,16 @@
         </table>
     </div>
 
-   
-          
-        
-        <div id="right-panel" class="hide"></div>
-            <p class="center-align">
-                    <a class="waves-effect waves-light btn-large" id="exit-btn"
-                        style="color: white; background-color: #328e04; opacity: .7 ">Take me
-                        home</a>
-                    <!-- <button id="exit-btn" style="background-color: #328e04">Finished with Directions</button> -->
-                </p>
+
+
+
+    <div id="right-panel" class="hide"></div>
+    <p class="center-align">
+        <a class="waves-effect waves-light btn-large" id="exit-btn"
+            style="color: white; background-color: #328e04; opacity: .7 ">Take me
+            home</a>
+        <!-- <button id="exit-btn" style="background-color: #328e04">Finished with Directions</button> -->
+    </p>
 
     </div>
 
@@ -282,10 +301,6 @@
 
 
 
-    <!-- Note: The address components in this sample are typical. You might need to adjust them for
-                 the locations relevant to your app. For more information, see
-           https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-      -->
 
 
 

@@ -8,7 +8,7 @@
     width: 75%;
     margin: 0 auto;
     background: white;
-    padding: 0px, 20px;
+    /* padding: 0px, 20px; */
     opacity: .7;
 }
 
@@ -151,9 +151,9 @@ p {
     color: white;
     background-color: #328e04;
 }
-.center-align {
+/* .center-align {
     padding: 20px;
-}
+} */
 
 /* dropdown */
 .dropdown-content{
@@ -261,4 +261,14 @@ tbody {
 
 .card-image{
     height: 10%;
+}
+
+.Legal{
+    margin: 0 auto;
+    width: 100%;
+    /* text-align: center; */
+}
+.facts{
+    font-weight: 900;
+    font-size: 18pt;
 }
